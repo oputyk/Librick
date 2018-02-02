@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Angular/Angular.iml" filepath="$PROJECT_DIR$/Angular/Angular.iml" />
       <module fileurl="file://$PROJECT_DIR$/Librick.iml" filepath="$PROJECT_DIR$/Librick.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Spring/Spring.iml" filepath="$PROJECT_DIR$/Spring/Spring.iml" />
     </modules>
   </component>
 </project>
