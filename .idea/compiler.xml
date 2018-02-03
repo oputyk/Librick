@@ -10,9 +10,9 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="Librick" target="1.6" />
+      <module name="Librick" target="1.8" />
       <module name="spring" target="1.8" />
-      <module name="Spring" target="1.6" />
+      <module name="Spring" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>
