@@ -7,14 +7,15 @@ Librick is a library web application.
 - Spring Boot
 - Spring MVC (REST)
 - Spring Data JPA
+- MySQL (XAMPP)
 - Lombok
 - Maven
+- ModelMapper
 
 # Frontend technologies
 - IntelliJ IDEA
 - Typescipt
-- Angular
-- Angular CLI
+- Angular (Angular CLI)
 - NPM
 - Sass (scss)
 - Angular Material Design
