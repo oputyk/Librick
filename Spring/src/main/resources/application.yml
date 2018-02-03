@@ -1,0 +1,8 @@
+spring:
+  datasource:
+   url: jdbc:mysql://localhost:3306/librick?useUnicode=yes&characterEncoding=UTF-8
+   username: root
+   password: root
+  jpa:
+    hibernate:
+      ddl-auto: create

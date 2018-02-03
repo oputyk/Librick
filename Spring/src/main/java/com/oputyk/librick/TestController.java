@@ -1,5 +1,6 @@
 package com.oputyk.librick;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,8 +12,17 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController()
 @RequestMapping("test/")
 public class TestController {
+    @Autowired
+    TestDtoRepository testDtoRepository;
+
     @GetMapping("hello")
     public TestDto hello() {
-        return new TestDto("message nr 1", "message nr 2");
+        TestDto testDto = TestDto.builder()
+                .message("message nr 1")
+                .message2("message nr 2")
+                .build();
+        testDtoRepository.save(testDto);
+
+        return testDtoRepository.findOne(1L);
     }
 }
