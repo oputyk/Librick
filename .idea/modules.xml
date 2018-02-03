@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Angular/Angular.iml" filepath="$PROJECT_DIR$/Angular/Angular.iml" />
       <module fileurl="file://$PROJECT_DIR$/Librick.iml" filepath="$PROJECT_DIR$/Librick.iml" />
-      <module fileurl="file://$PROJECT_DIR$/Spring/Spring.iml" filepath="$PROJECT_DIR$/Spring/Spring.iml" />
+      <module fileurl="file://$PROJECT_DIR$/angular/angular.iml" filepath="$PROJECT_DIR$/angular/angular.iml" />
+      <module fileurl="file://$PROJECT_DIR$/spring/spring.iml" filepath="$PROJECT_DIR$/spring/spring.iml" />
     </modules>
   </component>
 </project>
