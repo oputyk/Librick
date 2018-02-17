@@ -34,4 +34,22 @@ public class BorrowEntity {
     @JoinColumn(name = "reader_id")
     private ReaderEntity readerEntity;
 
+    // BorrowEntity (one) - BookInstanceEntity (one) //
+    public void updateBookInstanceEntity(BookInstanceEntity newBookInstanceEntity) {
+        bookInstanceEntity.setBorrowEntity(null);
+        bookInstanceEntity = newBookInstanceEntity;
+        if (newBookInstanceEntity != null && newBookInstanceEntity.getBorrowEntity() != this) {
+            newBookInstanceEntity.setBorrowEntity(this);
+        }
+    }
+
+    // BorrowEntity (many) - ReaderEntity (one) //
+    public void updateReaderEntity(ReaderEntity newReaderEntity) {
+        readerEntity.removeBorrowEntity(this);
+        readerEntity = newReaderEntity;
+        if (newReaderEntity != null && !newReaderEntity.getBorrowEntities().contains(this)) {
+            newReaderEntity.addBorrowEntity(this);
+        }
+    }
+
 }

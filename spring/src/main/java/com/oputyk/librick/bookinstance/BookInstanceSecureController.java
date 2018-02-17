@@ -1,4 +1,4 @@
-package com.oputyk.librick.security;
+package com.oputyk.librick.bookinstance;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("security")
-public class SecurityController {
+@RequestMapping("book-instance/secure")
+public class BookInstanceSecureController {
 
 }

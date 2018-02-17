@@ -1,8 +1,5 @@
 package com.oputyk.librick.book;
 
-import com.oputyk.librick.user.domain.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
  */
 
 @RestController
-@RequestMapping("book")
-public class BookController {
+@RequestMapping("book/secure")
+public class BookSecureController {
     @RequestMapping("hi")
     public String hi() {
-        return "hi";
+        return "secured hi";
     }
 }
