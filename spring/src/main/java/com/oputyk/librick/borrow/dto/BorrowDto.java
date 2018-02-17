@@ -1,4 +1,4 @@
-package com.oputyk.librick.book.dto;
+package com.oputyk.librick.borrow.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,15 +7,14 @@ import lombok.NoArgsConstructor;
 import java.util.Date;
 
 /**
- * Created by kamil on 03/02/2018.
+ * Created by kamil on 05/02/2018.
  */
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class BookDto {
+public class BorrowDto {
     private Long id;
-    private String name;
-    private String description;
-    private Date releaseDate;
+    private Date date;
+    private Date deadline;
 }

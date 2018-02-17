@@ -20,6 +20,10 @@ import java.util.List;
 @Table(name = "user")
 public class UserEntity {
     @Id
+    @GeneratedValue
+    private Long id;
+
+    @Column(unique = true)
     private String email;
     private String password;
 
