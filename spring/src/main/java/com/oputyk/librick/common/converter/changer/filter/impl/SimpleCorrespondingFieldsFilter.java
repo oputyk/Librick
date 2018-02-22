@@ -1,5 +1,6 @@
-package com.oputyk.librick.common.converter.filter;
+package com.oputyk.librick.common.converter.changer.filter.impl;
 
+import com.oputyk.librick.common.converter.changer.filter.CorrespondingFieldsFilter;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
@@ -9,7 +10,7 @@ import java.lang.reflect.Field;
  */
 
 @Service
-public class SameFieldsNamesAndTypesFilter implements CorrespondingFieldsFilter {
+public class SimpleCorrespondingFieldsFilter implements CorrespondingFieldsFilter {
     @Override
     public boolean filter(Field field1, Field field2) {
         boolean sameNames = field1.getName().equals(field2.getName());

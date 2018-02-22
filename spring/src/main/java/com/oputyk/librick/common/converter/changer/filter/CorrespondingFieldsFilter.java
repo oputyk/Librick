@@ -1,4 +1,4 @@
-package com.oputyk.librick.common.converter.filter;
+package com.oputyk.librick.common.converter.changer.filter;
 
 import java.lang.reflect.Field;
 
