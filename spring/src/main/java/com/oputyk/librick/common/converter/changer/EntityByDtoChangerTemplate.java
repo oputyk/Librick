@@ -2,9 +2,7 @@ package com.oputyk.librick.common.converter.changer;
 
 import com.oputyk.librick.common.converter.changer.assigner.FieldsAssigner;
 import com.oputyk.librick.common.converter.changer.filter.CorrespondingFieldsFilter;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
-import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -16,7 +14,7 @@ import java.util.Map;
  */
 
 @Builder
-public class EntityDtoChangerTemplate implements EntityDtoChanger {
+public class EntityByDtoChangerTemplate implements EntityByDtoChanger {
     private List<CorrespondingFieldsFilter> fieldsFilters;
     private FieldsAssigner fieldsAssigner;
 

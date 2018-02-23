@@ -12,9 +12,9 @@ import java.lang.reflect.Field;
 @Service
 public class SimpleCorrespondingFieldsFilter implements CorrespondingFieldsFilter {
     @Override
-    public boolean filter(Field field1, Field field2) {
-        boolean sameNames = field1.getName().equals(field2.getName());
-        boolean sameClasses = field1.getClass().equals(field2.getClass());
+    public boolean filter(Field entityField, Field dtoField) {
+        boolean sameNames = entityField.getName().equals(dtoField.getName());
+        boolean sameClasses = entityField.getClass().equals(dtoField.getClass());
 
         return sameNames && sameClasses;
     }

@@ -7,6 +7,6 @@ import java.util.Map;
  * Created by kamil on 22/02/2018.
  */
 
-public interface EntityDtoChanger {
+public interface EntityByDtoChanger {
     Object changeEntityByDto(Object entity, Object dto);
 }

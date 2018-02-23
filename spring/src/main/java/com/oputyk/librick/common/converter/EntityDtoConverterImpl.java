@@ -1,6 +1,6 @@
 package com.oputyk.librick.common.converter;
 
-import com.oputyk.librick.common.converter.changer.EntityDtoChanger;
+import com.oputyk.librick.common.converter.changer.EntityByDtoChanger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +17,7 @@ public class EntityDtoConverterImpl implements EntityDtoConverter {
     private ModelMapper modelMapper;
 
     @Autowired
-    private List<EntityDtoChanger> entityDtoChangers;
+    private List<EntityByDtoChanger> entityByDtoChangers;
 
     @Override
     public Object toDto(Object entity, Class<?> dtoClass) {
@@ -26,7 +26,7 @@ public class EntityDtoConverterImpl implements EntityDtoConverter {
 
     @Override
     public Object toEntity(Object dto, Object oldEntity) {
-        entityDtoChangers.forEach(changer -> changer.changeEntityByDto(oldEntity, dto));
+        entityByDtoChangers.forEach(changer -> changer.changeEntityByDto(oldEntity, dto));
 
         return oldEntity;
     }

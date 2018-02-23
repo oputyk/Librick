@@ -20,14 +20,14 @@ public class EntityDtoFieldsFilter implements CorrespondingFieldsFilter {
     private AnnotationOperator annotationOperator;
 
     @Override
-    public boolean filter(Field field1, Field field2) {
-        Class<?> field1Type = field1.getType();
-        Class<?> field2Type = field2.getType();
+    public boolean filter(Field entityField, Field dtoField) {
+        Class<?> entityFieldType = entityField.getType();
+        Class<?> dtoFieldType = dtoField.getType();
 
-        return isDtoClassRelatedWithEntityClass(field1Type, field2Type);
+        return isDtoClassRelatedWithEntityClass(entityFieldType, dtoFieldType);
     }
 
-    private boolean isDtoClassRelatedWithEntityClass(Class<?> dtoClass, Class<?> entityClass) {
+    private boolean isDtoClassRelatedWithEntityClass(Class<?> entityClass, Class<?> dtoClass) {
         if(isDto(dtoClass) && isEntity(entityClass)) {
             return getEntityClassRelatedWithDto(dtoClass).equals(entityClass);
         } else {
