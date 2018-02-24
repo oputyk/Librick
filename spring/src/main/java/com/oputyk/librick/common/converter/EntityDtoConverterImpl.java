@@ -25,7 +25,7 @@ public class EntityDtoConverterImpl implements EntityDtoConverter {
     }
 
     @Override
-    public Object toEntity(Object dto, Object oldEntity) {
+    public Object toEntity(Object oldEntity, Object dto) {
         entityByDtoChangers.forEach(changer -> changer.changeEntityByDto(oldEntity, dto));
 
         return oldEntity;

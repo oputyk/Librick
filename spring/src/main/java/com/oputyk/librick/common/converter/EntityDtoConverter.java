@@ -6,5 +6,5 @@ package com.oputyk.librick.common.converter;
 public interface EntityDtoConverter {
     Object toDto(Object entity, Class<?> dtoClass);
 
-    Object toEntity(Object dto, Object oldEntity);
+    Object toEntity(Object oldEntity, Object dto);
 }

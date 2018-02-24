@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Optional;
 
 /**
@@ -22,9 +23,8 @@ public class FieldOperatorImpl implements FieldOperator {
     public Object get(Object object, Field field) {
         try {
             return field.get(object);
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } finally {
             throw new RuntimeException("Can't get value of " + field.getName() + " field in "
                     + object.getClass().getSimpleName() + " object.");
         }
@@ -54,7 +54,7 @@ public class FieldOperatorImpl implements FieldOperator {
     @Override
     public Method findSetter(Class<?> clazz, Field field) {
         String setterName = "set" + WordUtils.capitalize(field.getName());
-        Class[] parametersTypes = {field.getType()};
+        Class[] parametersTypes = new Class<?>[]{ field.getType() };
 
         return methodOperator.findMethodInClassByNameAndArgs(clazz, setterName, parametersTypes);
     }

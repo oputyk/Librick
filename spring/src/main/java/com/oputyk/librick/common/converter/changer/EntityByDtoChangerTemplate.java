@@ -21,13 +21,13 @@ public class EntityByDtoChangerTemplate implements EntityByDtoChanger {
     @Override
     public Object changeEntityByDto(Object entity, Object dto) {
         Field[] entityFields = entity.getClass().getDeclaredFields();
-        Field[] dtoFields = entity.getClass().getDeclaredFields();
+        Field[] dtoFields = dto.getClass().getDeclaredFields();
 
-        Map<Field, Field> correspondingFields;
-        correspondingFields = groupAllFieldsByFilters(entityFields, dtoFields, fieldsFilters);
+        Map<Field, Field> correspondingDtoEntityFields;
+        correspondingDtoEntityFields = groupAllFieldsByFilters(dtoFields, entityFields, fieldsFilters);
 
-        assignFields(entity, dto, correspondingFields);
-
+        assignFromToFields(dto, entity, correspondingDtoEntityFields);
+        
         return entity;
     }
 
@@ -42,9 +42,10 @@ public class EntityByDtoChangerTemplate implements EntityByDtoChanger {
         return correspondingFields;
     }
 
-    private void assignFields(Object entity, Object dto, Map<Field, Field> correspondingFields) {
-        correspondingFields.forEach(
-                ((field1, field2) -> fieldsAssigner.assignFromTo(entity, dto, field1, field2)));
+    private void assignFromToFields(Object from, Object to, Map<Field, Field> fromToFields) {
+        fromToFields.forEach(
+                ((fromField, toField) ->
+                        fieldsAssigner.assignFromTo(from, to, fromField, toField)));
     }
 
     private boolean filterByAllFilters(Field field1, Field field2) {

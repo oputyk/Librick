@@ -37,11 +37,8 @@ public class AnnotationOperatorImpl implements AnnotationOperator {
 
         try {
             return (Class<?>) annotationPatameter.invoke(annotation, (Object[]) null);
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } finally {
             throw new RuntimeException("Can't get value of @" + annotation.annotationType().getSimpleName()
                     + " annotation's parameter - " + parameterName + ".");
         }

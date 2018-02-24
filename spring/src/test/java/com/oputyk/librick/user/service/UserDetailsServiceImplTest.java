@@ -26,24 +26,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 public class UserDetailsServiceImplTest {
-
     @MockBean
-    UserService userService;
+    private UserService userService;
 
     @Autowired
-    UserDetailsService userDetailsService;
+    private UserDetailsService userDetailsService;
 
     @TestConfiguration
-    static class UserDetailsServiceTestConfig {
-
+    static class UserDetailsServiceImplTestConfig {
         @Bean
-        public UserDetailsService userDetailsService() {
+        public UserDetailsService userDetailsServiceImpl() {
             return new UserDetailsServiceImpl();
         }
     }
 
     @Before
-    public void setUpUserRepository() {
+    public void setUpUserService() {
         UserEntity userEntity = UserEntity.builder()
                 .id(1L)
                 .email("abc@email.com")

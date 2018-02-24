@@ -1,5 +1,6 @@
 package com.oputyk.librick.common.converter.reflection.operator.method;
 
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Service;
 
 import java.lang.reflect.InvocationTargetException;
@@ -15,50 +16,40 @@ import java.util.Optional;
 public class MethodOperatorImpl implements MethodOperator {
     @Override
     public Method findMethodInClassByName(Class<?> clazz, String name) {
-        return findMethodInClassByNameAndArgs(clazz, name, null);
+        return findMethodInClassByNameAndArgs(clazz, name, new Class<?>[0]);
     }
 
     @Override
     public Object invokeMethod(Object object, Method method) {
-        return invokeMethod(object, null);
+        return invokeMethod(object, method, new Object[0]);
     }
 
     @Override
-    public Object invokeMethod(Object object, Method method, Object... args) {
+    public Object invokeMethod(Object object, Method method, Object[] args) {
         try {
             return method.invoke(object, args);
-        } catch (IllegalAccessException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        } finally {
             throw new RuntimeException("Couldn't invoke method " + method.getName()
-                    + " in " + object.getClass().getSimpleName() + " class with no arguments.");
+                    + " in " + object.getClass().getSimpleName() + " class.");
         }
     }
 
     @Override
     public Method findMethodInClassByNameAndArgs(Class<?> clazz, String name, Class<?>[] parametersTypes) {
         try {
-            Method foundMethod = findAndReturnMethodOfClassByNameIfPossible(clazz, name);
-
-            if (foundMethod != null) {
-                return foundMethod;
+            Method foundMethod = clazz.getDeclaredMethod(name, parametersTypes);
+            
+            if(foundMethod == null) {
+                throw new RuntimeException("Couldn't find " + name + " method of "
+                        + clazz.getSimpleName() + " class.");
             }
+
+            return foundMethod;
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
-        } finally {
             throw new RuntimeException("Couldn't find " + name + " method of "
                     + clazz.getSimpleName() + " class.");
         }
-    }
-
-    private Method findAndReturnMethodOfClassByNameIfPossible(Class<?> clazz, String name) throws NoSuchMethodException {
-        Optional<Method> foundMethod = Optional.ofNullable(clazz.getDeclaredMethod(name, null));
-
-        if(foundMethod.isPresent()) {
-            return foundMethod.get();
-        }
-        return null;
     }
 }
