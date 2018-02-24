@@ -3,13 +3,19 @@ package com.oputyk.librick.common.converter;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.common.converter.changer.EntityByDtoChanger;
+import configuration.TestConfig;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
@@ -20,7 +26,6 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by kamil on 23/02/2018.
  */
 
-@ContextConfiguration(classes = { ConverterTestConfig.class }, loader = AnnotationConfigContextLoader.class)
 @RunWith(SpringRunner.class)
 public class EntityDtoConverterImplTest {
     @Autowired
@@ -29,17 +34,31 @@ public class EntityDtoConverterImplTest {
     @MockBean
     private EntityByDtoChanger entityByDtoChanger;
 
-    @Qualifier("bookDto")
+    @Qualifier("bookDto1")
     @Autowired
     private BookDto bookDto;
 
-    @Qualifier("newBookEntity")
+    @Qualifier("bookEntity1")
     @Autowired
     private BookEntity bookEntity;
 
-    @Qualifier("oldBookEntity")
+    @Qualifier("bookEntity2")
     @Autowired
     private BookEntity oldBookEntity;
+
+    @Import(TestConfig.class)
+    @TestConfiguration
+    static public class EntityDtoConverterImplTestConfig {
+        @Bean
+        public EntityDtoConverter entityDtoConverterImpl() {
+            return new EntityDtoConverterImpl();
+        }
+
+        @Bean
+        public ModelMapper modelMapper() {
+            return new ModelMapper();
+        }
+    }
 
     @Before
     public void initMockEntityByDtoChanger() {

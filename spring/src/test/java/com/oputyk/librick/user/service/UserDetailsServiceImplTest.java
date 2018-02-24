@@ -41,7 +41,7 @@ public class UserDetailsServiceImplTest {
     }
 
     @Before
-    public void setUpUserService() {
+    public void setUp() {
         UserEntity userEntity = UserEntity.builder()
                 .id(1L)
                 .email("abc@email.com")
