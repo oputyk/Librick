@@ -3,14 +3,15 @@ package com.oputyk.librick.common.converter;
 import com.oputyk.librick.Application;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
-import configuration.TestConfig;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -18,29 +19,49 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by kamil on 23/02/2018.
  */
 
-@ContextConfiguration(classes = { Application.class, TestConfig.class}, loader = AnnotationConfigContextLoader.class)
+@ActiveProfiles("test")
+@ContextConfiguration(classes = {Application.class })
 @RunWith(SpringRunner.class)
 public class EntityDtoConverterImplIntegrationTest {
     @Autowired
     private EntityDtoConverter entityDtoConverter;
 
-    @Qualifier("bookEntity1")
-    @Autowired
-    private BookEntity newBookEntity;
-
-    @Qualifier("bookDto1")
-    @Autowired
+    private BookEntity bookEntity;
     private BookDto bookDto;
-
-    @Qualifier("bookEntity2")
-    @Autowired
     private BookEntity oldBookEntity;
+
+    private Date now = new Date();
+    private Long bookId = 1L;
+    private String bookName = "Book name";
+    private String bookDescription = "Book description.";
+    private Long oldBookId = 2L;
+
+    @Before
+    public void setUp() {
+        bookDto = BookDto.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+
+        bookEntity = BookEntity.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+
+        oldBookEntity = BookEntity.builder()
+                .id(oldBookId)
+                .build();
+    }
 
     @Test
     public void whenChangeEntityByDto_thenReturnWellConvertedEntity() {
         BookEntity convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
 
-        assertThat(convertedEntity).isEqualToComparingFieldByField(newBookEntity);
+        assertThat(convertedEntity).isEqualToComparingFieldByField(bookEntity);
     }
 
 }

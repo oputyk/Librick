@@ -5,6 +5,7 @@ import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.common.converter.changer.EntityByDtoChanger;
 import configuration.TestConfig;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
@@ -16,9 +17,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+
+import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -26,6 +30,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  * Created by kamil on 23/02/2018.
  */
 
+@ActiveProfiles("test")
 @RunWith(SpringRunner.class)
 public class EntityDtoConverterImplTest {
     @Autowired
@@ -34,17 +39,18 @@ public class EntityDtoConverterImplTest {
     @MockBean
     private EntityByDtoChanger entityByDtoChanger;
 
-    @Qualifier("bookDto1")
-    @Autowired
+    @MockBean
+    private ModelMapper modelMapper;
+
     private BookDto bookDto;
-
-    @Qualifier("bookEntity1")
-    @Autowired
     private BookEntity bookEntity;
-
-    @Qualifier("bookEntity2")
-    @Autowired
     private BookEntity oldBookEntity;
+
+    private Date now = new Date();
+    private Long bookId = 1L;
+    private String bookName = "Book name";
+    private String bookDescription = "Book description.";
+    private Long oldBookId = 2L;
 
     @Import(TestConfig.class)
     @TestConfiguration
@@ -53,21 +59,34 @@ public class EntityDtoConverterImplTest {
         public EntityDtoConverter entityDtoConverterImpl() {
             return new EntityDtoConverterImpl();
         }
-
-        @Bean
-        public ModelMapper modelMapper() {
-            return new ModelMapper();
-        }
     }
 
     @Before
-    public void initMockEntityByDtoChanger() {
-        Mockito.when(entityByDtoChanger.changeEntityByDto(oldBookEntity, bookDto))
-                .thenReturn(bookEntity);
+    public void setUp() {
+        bookDto = BookDto.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+
+        bookEntity = BookEntity.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+
+        oldBookEntity = BookEntity.builder()
+                .id(oldBookId)
+                .build();
     }
 
     @Test
     public void whenToEntity_thenReturnWellConvertedDtoToEntity() {
+        Mockito.when(entityByDtoChanger.changeEntityByDto(oldBookEntity, bookDto))
+                .thenReturn(bookEntity);
+
         BookEntity convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
 
         assertThat(convertedEntity).isEqualToComparingFieldByField(convertedEntity);
@@ -75,7 +94,11 @@ public class EntityDtoConverterImplTest {
 
     @Test
     public void whenToDto_thenReturnWellConvertedEntityToDto() {
+        Mockito.when(modelMapper.map(bookEntity, BookDto.class))
+                .thenReturn(bookDto);
+
         BookDto convertedDto = (BookDto) entityDtoConverter.toDto(bookEntity, BookDto.class);
+
 
         assertThat(convertedDto).isEqualToComparingFieldByField(bookDto);
     }
