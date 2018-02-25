@@ -8,13 +8,16 @@ import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.book.dto.FullBookDto;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
+import org.springframework.test.context.junit4.SpringRunner;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -23,6 +26,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 /**
  * Created by kamil on 25/02/2018.
  */
+
+@RunWith(SpringRunner.class)
 public class BookServiceImplTest {
     @Autowired
     private BookService bookService;
