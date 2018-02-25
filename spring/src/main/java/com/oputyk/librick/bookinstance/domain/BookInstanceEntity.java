@@ -3,9 +3,7 @@ package com.oputyk.librick.bookinstance.domain;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.borrow.domain.BorrowEntity;
 import com.oputyk.librick.borrow.dto.BorrowDto;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -16,7 +14,8 @@ import java.util.Date;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "book_instance")
 public class BookInstanceEntity {

@@ -2,10 +2,8 @@ package com.oputyk.librick.book.domain;
 
 import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.bookinstance.domain.BookInstanceEntity;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,7 +17,8 @@ import java.util.stream.Collectors;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Setter
+@Getter
 @Entity
 @Table(name = "book")
 public class BookEntity {
@@ -56,14 +55,14 @@ public class BookEntity {
 
     public void addAuthorEntity(AuthorEntity authorEntity) {
         authorEntities.add(authorEntity);
-        if (!authorEntities.contains(this)) {
+        if (!authorEntity.getBookEntities().contains(this)) {
             authorEntity.addBookEntity(this);
         }
     }
 
     public void removeAuthorEntity(AuthorEntity authorEntity) {
         authorEntities.remove(authorEntity);
-        if (authorEntities.contains(this)) {
+        if (authorEntity.getBookEntities().contains(this)) {
             authorEntity.removeBookEntity(this);
         }
     }
@@ -89,14 +88,14 @@ public class BookEntity {
 
     public void addBookInstanceEntity(BookInstanceEntity bookInstanceEntity) {
         bookInstanceEntities.add(bookInstanceEntity);
-        if (!bookInstanceEntities.contains(this)) {
+        if (bookInstanceEntity.getBookEntity() != this) {
             bookInstanceEntity.updateBookEntity(this);
         }
     }
 
     public void removeBookInstanceEntity(BookInstanceEntity bookInstanceEntity) {
         bookInstanceEntities.remove(bookInstanceEntity);
-        if (bookInstanceEntities.contains(this)) {
+        if (bookInstanceEntity.getBookEntity() == this) {
             bookInstanceEntity.updateBookEntity(null);
         }
     }

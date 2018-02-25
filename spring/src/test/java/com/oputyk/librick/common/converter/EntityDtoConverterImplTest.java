@@ -2,25 +2,22 @@ package com.oputyk.librick.common.converter;
 
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
-import com.oputyk.librick.common.converter.changer.EntityByDtoChanger;
+import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
+import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverterImpl;
+import com.oputyk.librick.common.converter.entitydtoconverter.changer.EntityByDtoChanger;
 import configuration.TestConfig;
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.TestConfiguration;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.context.support.AnnotationConfigContextLoader;
 
 import java.util.Date;
 

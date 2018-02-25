@@ -1,5 +1,7 @@
 package com.oputyk.librick.author.converter;
 
+import com.oputyk.librick.author.domain.AuthorEntity;
+import com.oputyk.librick.author.dto.AuthorDto;
 import org.springframework.stereotype.Service;
 
 /**
@@ -8,5 +10,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface AuthorConverter {
-
+    AuthorEntity toAuthorEntity(AuthorDto authorDto);
 }

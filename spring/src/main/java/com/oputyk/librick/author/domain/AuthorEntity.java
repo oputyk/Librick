@@ -1,9 +1,7 @@
 package com.oputyk.librick.author.domain;
 
 import com.oputyk.librick.book.domain.BookEntity;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.awt.print.Book;
@@ -15,7 +13,8 @@ import java.util.stream.Collectors;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "author")
 public class AuthorEntity {
@@ -56,14 +55,14 @@ public class AuthorEntity {
 
     public void addBookEntity(BookEntity bookEntity) {
         bookEntities.add(bookEntity);
-        if (!bookEntities.contains(this)) {
+        if (!bookEntity.getAuthorEntities().contains(this)) {
             bookEntity.addAuthorEntity(this);
         }
     }
 
     public void removeBookEntity(BookEntity bookEntity) {
         bookEntities.remove(bookEntity);
-        if (bookEntities.contains(this)) {
+        if (bookEntity.getAuthorEntities().contains(this)) {
             bookEntity.removeAuthorEntity(this);
         }
     }
