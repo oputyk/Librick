@@ -60,33 +60,43 @@ public class EntityDtoConverterImplTest {
 
     @Before
     public void setUp() {
-        bookDto = BookDto.builder()
-                .id(bookId)
-                .name(bookName)
-                .releaseDate(now)
-                .description(bookDescription)
-                .build();
-
-        bookEntity = BookEntity.builder()
-                .id(bookId)
-                .name(bookName)
-                .releaseDate(now)
-                .description(bookDescription)
-                .build();
-
-        oldBookEntity = BookEntity.builder()
-                .id(oldBookId)
-                .build();
+        initBookDto();
+        initBookEntity();
+        initOldBookEntity();
     }
 
     @Test
-    public void whenToEntity_thenReturnWellConvertedDtoToEntity() {
+    public void testToEntity() {
         Mockito.when(entityByDtoChanger.changeEntityByDto(oldBookEntity, bookDto))
                 .thenReturn(bookEntity);
 
         BookEntity convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
 
         assertThat(convertedEntity).isEqualToComparingFieldByField(convertedEntity);
+    }
+
+    private void initBookDto() {
+        bookDto = BookDto.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+    }
+
+    private void initBookEntity() {
+        bookEntity = BookEntity.builder()
+                .id(bookId)
+                .name(bookName)
+                .releaseDate(now)
+                .description(bookDescription)
+                .build();
+    }
+
+    private void initOldBookEntity() {
+        oldBookEntity = BookEntity.builder()
+                .id(oldBookId)
+                .build();
     }
 
     @Test

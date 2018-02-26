@@ -1,6 +1,5 @@
 package com.oputyk.librick.book.service;
 
-import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.book.converter.BookConverter;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.domain.BookRepository;
@@ -9,7 +8,6 @@ import com.oputyk.librick.book.dto.FullBookDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -17,7 +15,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -40,7 +37,7 @@ public class BookServiceImplTest {
 
     private BookEntity bookEntity;
     private BookDto bookDto;
-    private FullBookDto fullbookDto;
+    private FullBookDto fullBookDto;
 
     @TestConfiguration
     static public class BookServiceImplTestConfig {
@@ -52,9 +49,9 @@ public class BookServiceImplTest {
 
     @Before
     public void setUp() throws Exception {
-        bookEntity = new BookEntity(1L, "entity", null, "description", null, null);
-        bookDto = new BookDto(1L, "entity", "description", null);
-        fullbookDto = new FullBookDto(1L, "entity", null, "description", null, null);
+        initBookEntity();
+        initBookDto();
+        initFullBookDto();
     }
 
     @Before
@@ -66,7 +63,7 @@ public class BookServiceImplTest {
                 .thenReturn(bookDto);
 
         Mockito.when(bookConverter.toFullBookDto(bookEntity))
-                .thenReturn(fullbookDto);
+                .thenReturn(fullBookDto);
     }
 
     @Test
@@ -79,10 +76,22 @@ public class BookServiceImplTest {
 
     @Test
     public void findAllFullBookDtos() throws Exception {
-        assertThat(bookService.findAllFullBookDtos().contains(fullbookDto))
+        assertThat(bookService.findAllFullBookDtos().contains(fullBookDto))
                 .isTrue();
 
         assertThat(bookService.findAllFullBookDtos().size()).isEqualTo(1);
+    }
+
+    private void initFullBookDto() {
+        fullBookDto = new FullBookDto(1L, "entity", null, "description", null, null);
+    }
+
+    private void initBookDto() {
+        bookDto = new BookDto(1L, "entity", "description", null);
+    }
+
+    private void initBookEntity() {
+        bookEntity = new BookEntity(1L, "entity", null, "description", null, null);
     }
 
 }

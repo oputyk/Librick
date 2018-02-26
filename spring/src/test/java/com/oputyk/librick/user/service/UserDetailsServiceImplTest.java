@@ -17,6 +17,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -32,6 +33,12 @@ public class UserDetailsServiceImplTest {
     @Autowired
     private UserDetailsService userDetailsService;
 
+    private UserEntity userEntity;
+
+    private String email = "abc@email.com";
+    private String password = "admin";
+    private List<Role> roles = Arrays.asList(Role.ROLE_LIBRARIAN);
+
     @TestConfiguration
     static class UserDetailsServiceImplTestConfig {
         @Bean
@@ -42,31 +49,36 @@ public class UserDetailsServiceImplTest {
 
     @Before
     public void setUp() {
-        UserEntity userEntity = UserEntity.builder()
-                .id(1L)
-                .email("abc@email.com")
-                .password("admin")
-                .roles(Arrays.asList(Role.ROLE_LIBRARIAN))
-                .build();
+        initUserEntity();
+    }
 
+    @Before
+    public void setUpMocks() {
         Mockito.when(userService.findUserEntityByEmail(userEntity.getEmail()))
                 .thenReturn(userEntity);
     }
 
     @Test
-    public void whenLoadUserByUsername_thenReturnUserDetails() {
-        String email = "abc@email.com";
-
+    public void testLoadByUserName() {
         UserDetails userDetails = userDetailsService.loadUserByUsername(email);
 
-        assertThat(userDetails.getUsername()).isEqualTo("abc@email.com");
-        assertThat(userDetails.getPassword()).isEqualTo("admin");
+        assertThat(userDetails.getUsername()).isEqualTo(email);
+        assertThat(userDetails.getPassword()).isEqualTo(password);
     }
 
     @Test(expected = UsernameNotFoundException.class)
-    public void whenLoadUserByUsername_thenThrowAnException() {
-        String email = "def@email.com";
+    public void testLoadUserByUserNameFailure() {
+        String badEmail = "def@email.com";
 
-        assertThat(userDetailsService.loadUserByUsername(email));
+        assertThat(userDetailsService.loadUserByUsername(badEmail));
+    }
+
+    private void initUserEntity() {
+        userEntity = UserEntity.builder()
+                .id(1L)
+                .email(email)
+                .password(password)
+                .roles(roles)
+                .build();
     }
 }

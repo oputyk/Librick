@@ -39,30 +39,41 @@ public class EntityDtoConverterImplIntegrationTest {
 
     @Before
     public void setUp() {
+        initBookDto();
+        initBookEntity();
+        initOldBookEntity();
+    }
+
+    @Test
+    public void testBookDtoToEntity() {
+        BookEntity convertedEntity;
+        convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
+
+        assertThat(convertedEntity).isEqualToComparingFieldByField(bookEntity);
+    }
+
+    private void initBookDto() {
         bookDto = BookDto.builder()
                 .id(bookId)
                 .name(bookName)
                 .releaseDate(now)
                 .description(bookDescription)
                 .build();
+    }
 
+    private void initBookEntity() {
         bookEntity = BookEntity.builder()
                 .id(bookId)
                 .name(bookName)
                 .releaseDate(now)
                 .description(bookDescription)
                 .build();
+    }
 
+    private void initOldBookEntity() {
         oldBookEntity = BookEntity.builder()
                 .id(oldBookId)
                 .build();
-    }
-
-    @Test
-    public void whenChangeEntityByDto_thenReturnWellConvertedEntity() {
-        BookEntity convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
-
-        assertThat(convertedEntity).isEqualToComparingFieldByField(bookEntity);
     }
 
 }

@@ -22,44 +22,53 @@ public class BookEntityTest {
 
     private BookEntity bookEntity;
     private List<AuthorEntity> authorEntities;
+    private List<AuthorEntity> oldAuthorEntities;
+    private Date now;
 
     @Before
     public void setUp() throws Exception {
-        Date now = new Date();
-        authorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(1L, "firstName", "lastName", 1, new ArrayList<>(Arrays.asList(bookEntity))),
-                new AuthorEntity(2L, "firstName2", "lastName2", 2, new ArrayList<>())
-        ));
-
-        List<AuthorEntity> oldAuthorEntities;
-        oldAuthorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(3L, "firstName3", "lastName3", 3, new ArrayList<>(Arrays.asList(bookEntity)))
-        ));
-
-        bookEntity = new BookEntity(1L, "firstName", oldAuthorEntities, "description", now, new ArrayList<>());
+        initDate();
+        initAuthorEntities();
+        initOldAuthorEntities();
+        initBookEntity();
     }
 
     @Test
-    public void updateAuthorEntities() throws Exception {
+    public void testUpdateAuthorEntities() throws Exception {
         bookEntity.updateAuthorEntities(authorEntities);
 
-        assertThat(bookEntity.getAuthorEntities().containsAll(authorEntities)).isTrue();
-
-        assertThat(bookEntity.getAuthorEntities().size())
-                .isEqualTo(authorEntities.size());
+        assertThat(bookEntity.getAuthorEntities()).isEqualTo(authorEntities);
     }
 
     @Test
-    public void addAuthorEntity() {
+    public void testAddAuthorEntity() {
         bookEntity.setAuthorEntities(new ArrayList<>());
 
         bookEntity.addAuthorEntity(authorEntities.get(0));
         bookEntity.addAuthorEntity(authorEntities.get(1));
 
-        assertThat(bookEntity.getAuthorEntities().containsAll(authorEntities)).isTrue();
+        assertThat(bookEntity.getAuthorEntities()).isEqualTo(authorEntities);
+    }
 
-        assertThat(bookEntity.getAuthorEntities().size())
-                .isEqualTo(authorEntities.size());
+    private void initDate() {
+        now = new Date();
+    }
+
+    private void initAuthorEntities() {
+        authorEntities = new ArrayList<>(Arrays.asList(
+                new AuthorEntity(1L, "firstName", "lastName", 1, new ArrayList<>(Arrays.asList(bookEntity))),
+                new AuthorEntity(2L, "firstName2", "lastName2", 2, new ArrayList<>())
+        ));
+    }
+
+    private void initOldAuthorEntities() {
+        oldAuthorEntities = new ArrayList<>(Arrays.asList(
+                new AuthorEntity(3L, "firstName3", "lastName3", 3, new ArrayList<>(Arrays.asList(bookEntity)))
+        ));
+    }
+
+    private void initBookEntity() {
+        bookEntity = new BookEntity(1L, "firstName", oldAuthorEntities, "description", now, new ArrayList<>());
     }
 
 }
