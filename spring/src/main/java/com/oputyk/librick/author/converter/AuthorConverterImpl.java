@@ -13,11 +13,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class AuthorConverterImpl implements AuthorConverter {
-    @Autowired
-    private AuthorRepository authorRepository;
+    private final AuthorRepository authorRepository;
+
+    private final EntityDtoConverter converter;
 
     @Autowired
-    private EntityDtoConverter converter;
+    public AuthorConverterImpl(AuthorRepository authorRepository, EntityDtoConverter converter) {
+        this.authorRepository = authorRepository;
+        this.converter = converter;
+    }
 
     @Override
     public AuthorEntity toAuthorEntity(AuthorDto authorDto) {

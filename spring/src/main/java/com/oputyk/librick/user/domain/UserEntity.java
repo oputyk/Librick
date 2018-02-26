@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,5 +32,5 @@ public class UserEntity {
     @CollectionTable(name = "role", joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
     @Enumerated(EnumType.STRING)
-    private List<Role> roles;
+    private List<Role> roles = new ArrayList<>();
 }

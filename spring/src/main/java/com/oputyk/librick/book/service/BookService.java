@@ -13,4 +13,6 @@ public interface BookService {
     List<BookDto> findAllBookDtos();
 
     List<FullBookDto> findAllFullBookDtos();
+
+
 }

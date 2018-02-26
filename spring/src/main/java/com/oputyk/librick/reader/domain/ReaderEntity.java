@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -28,7 +29,7 @@ public class ReaderEntity {
     private String lastName;
 
     @OneToMany(mappedBy = "readerEntity")
-    private List<BorrowEntity> borrowEntities;
+    private List<BorrowEntity> borrowEntities = new ArrayList<>();
 
     // ReaderEntity (one) - BorrowEntity (many) //
     public void updateBorrowEntities(List<BorrowEntity> newBorrowEntities) {

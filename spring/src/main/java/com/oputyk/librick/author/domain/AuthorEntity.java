@@ -5,6 +5,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.awt.print.Book;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -33,7 +34,7 @@ public class AuthorEntity {
     @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
-    private List<BookEntity> bookEntities;
+    private List<BookEntity> bookEntities = new ArrayList<>();
 
     // AuthorEntity (many) - BookEntity (many) //
     public void updateBookEntities(List<BookEntity> newBookEntities) {

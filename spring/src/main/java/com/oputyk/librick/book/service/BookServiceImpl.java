@@ -6,6 +6,7 @@ import com.oputyk.librick.book.domain.BookRepository;
 import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.book.dto.FullBookDto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -13,6 +14,8 @@ import java.util.stream.Collectors;
 /**
  * Created by kamil on 17/02/2018.
  */
+
+@Service
 public class BookServiceImpl implements BookService {
     @Autowired
     private BookRepository bookRepository;
@@ -25,7 +28,7 @@ public class BookServiceImpl implements BookService {
         List<BookEntity> bookEntities = bookRepository.findAll();
 
         return bookEntities.stream()
-                .map(bookEntity -> bookConverter.toBookDto(bookEntity))
+                .map(bookConverter::toBookDto)
                 .collect(Collectors.toList());
     }
 
@@ -34,7 +37,7 @@ public class BookServiceImpl implements BookService {
         List<BookEntity> bookEntities = bookRepository.findAll();
 
         return bookEntities.stream()
-                .map(bookEntity -> bookConverter.toFullBookDto(bookEntity))
+                .map(bookConverter::toFullBookDto)
                 .collect(Collectors.toList());
     }
 }

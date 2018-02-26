@@ -13,11 +13,15 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class BookInstanceConverterImpl implements BookInstanceConverter {
-    @Autowired
-    private BookInstanceRepository bookInstanceRepository;
+    private final BookInstanceRepository bookInstanceRepository;
+
+    private final EntityDtoConverter converter;
 
     @Autowired
-    private EntityDtoConverter converter;
+    public BookInstanceConverterImpl(BookInstanceRepository bookInstanceRepository, EntityDtoConverter converter) {
+        this.bookInstanceRepository = bookInstanceRepository;
+        this.converter = converter;
+    }
 
     @Override
     public BookInstanceEntity toBookInstanceEntity(BookInstanceDto bookInstanceDto) {

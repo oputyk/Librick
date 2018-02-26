@@ -6,6 +6,7 @@ import lombok.*;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,12 +29,12 @@ public class BookEntity {
     private String name;
 
     @ManyToMany(mappedBy = "bookEntities")
-    private List<AuthorEntity> authorEntities;
+    private List<AuthorEntity> authorEntities = new ArrayList<>();
     private String description;
     private Date releaseDate;
 
     @OneToMany(mappedBy = "bookEntity")
-    private List<BookInstanceEntity> bookInstanceEntities;
+    private List<BookInstanceEntity> bookInstanceEntities = new ArrayList<>();
 
     // BookEntity (many) - AuthorEntity (many) //
     public void updateAuthorEntities(List<AuthorEntity> newAuthorEntities) {
