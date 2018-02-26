@@ -1,10 +1,9 @@
 package com.oputyk.librick.bookinstance.converter;
 
-import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.bookinstance.domain.BookInstanceEntity;
 import com.oputyk.librick.bookinstance.domain.BookInstanceRepository;
 import com.oputyk.librick.bookinstance.dto.BookInstanceDto;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
+import com.oputyk.librick.common.converter.EntityDtoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

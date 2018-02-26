@@ -8,7 +8,7 @@ import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.book.dto.FullBookDto;
 import com.oputyk.librick.bookinstance.converter.BookInstanceConverter;
 import com.oputyk.librick.bookinstance.domain.BookInstanceEntity;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
+import com.oputyk.librick.common.converter.EntityDtoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

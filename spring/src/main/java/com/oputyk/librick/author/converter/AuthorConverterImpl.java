@@ -3,7 +3,7 @@ package com.oputyk.librick.author.converter;
 import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.author.domain.AuthorRepository;
 import com.oputyk.librick.author.dto.AuthorDto;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
+import com.oputyk.librick.common.converter.EntityDtoConverter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

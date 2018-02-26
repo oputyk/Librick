@@ -2,9 +2,7 @@ package com.oputyk.librick.common.converter;
 
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverterImpl;
-import com.oputyk.librick.common.converter.entitydtoconverter.changer.EntityByDtoChanger;
+import com.oputyk.librick.common.converter.changer.EntityByDtoChanger;
 import configuration.TestConfig;
 import org.junit.Before;
 import org.junit.Test;

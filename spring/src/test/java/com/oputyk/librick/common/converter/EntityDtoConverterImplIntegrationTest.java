@@ -3,7 +3,6 @@ package com.oputyk.librick.common.converter;
 import com.oputyk.librick.Application;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
-import com.oputyk.librick.common.converter.entitydtoconverter.EntityDtoConverter;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
