@@ -12,6 +12,7 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.TestConfiguration;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
@@ -29,10 +30,10 @@ public class UserConverterImplTest {
     @Autowired
     private UserConverter userConverter;
 
-    @Mock
+    @MockBean
     private UserRepository userRepository;
 
-    @Mock
+    @MockBean
     private EntityDtoConverter entityDtoConverter;
 
     private UserEntity userEntity;
@@ -44,13 +45,12 @@ public class UserConverterImplTest {
     private final String userPassword = "password";
     private final ArrayList<Role> userRoles = new ArrayList<>(Arrays.asList(Role.ROLE_LIBRARIAN));
 
-    private final Long oldUserId = 2L;
     private final String oldUserEmail = "email2@email.com";
     private final String oldUserPassword = "password2";
     private final ArrayList<Role> oldUserRoles = new ArrayList<>();
 
     @TestConfiguration
-    public static class UserConverterImplTestConfig {
+    static public class UserConverterImplTestConfig {
         @Bean
         public UserConverter userConverterImpl() {
             return new UserConverterImpl();
@@ -79,7 +79,7 @@ public class UserConverterImplTest {
 
     @Test
     public void testToUserEntity() throws Exception {
-        Mockito.when(userRepository.findOne(oldUserId))
+        Mockito.when(userRepository.findOne(userId))
                 .thenReturn(oldUserEntity);
 
         Mockito.when(entityDtoConverter.toEntity(oldUserEntity, userDto))
@@ -99,7 +99,7 @@ public class UserConverterImplTest {
     }
 
     private void initOldUserEntity() {
-        oldUserEntity = new UserEntity(oldUserId, oldUserEmail, oldUserPassword, oldUserRoles);
+        oldUserEntity = new UserEntity(userId, oldUserEmail, oldUserPassword, oldUserRoles);
     }
 
 }
