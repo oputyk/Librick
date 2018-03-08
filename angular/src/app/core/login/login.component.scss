@@ -1,0 +1,33 @@
+%center {
+  margin: auto;
+}
+
+%center-content {
+  text-align: center;
+}
+
+
+.card {
+  @extend %center;
+  @extend %center-content;
+  width: 30%;
+}
+
+.card-title {
+  @extend %center-content;
+}
+
+.login {
+  @extend %center-content;
+}
+
+.input {
+  @extend %center;
+  width: 70%;
+}
+
+.button {
+  margin-top: 0.5em;
+  width: 70%;
+}
+

@@ -12,10 +12,12 @@ import {MatFormField, MatHint} from "@angular/material";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {MaterialModule} from "./material.module";
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   imports: [
     CommonModule,
+    FormsModule,
     CoreRoutingModule,
     MaterialModule,
     ApiModule,

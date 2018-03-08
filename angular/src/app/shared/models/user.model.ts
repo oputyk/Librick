@@ -1,4 +1,4 @@
-import {Role} from "../enum/role.enum";
+import {Role} from "../enums/role.enum";
 
 /**
  * Created by kamil on 26/02/2018.

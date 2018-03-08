@@ -1,6 +1,17 @@
-<div class="example-container">
-  <mat-form-field hintLabel="Max 10 characters">
-    <input matInput #input maxlength="10" placeholder="Enter some input">
-    <mat-hint align="end">{{input.value?.length || 0}}/10</mat-hint>
+<mat-card class="card">
+  <mat-card-title class="card-title">Login to Librick Librarian</mat-card-title>
+
+  <mat-form-field class="input">
+    <input matInput [(ngModel)]="email" type="email" placeholder="Email"/>
   </mat-form-field>
-</div>
+
+  <mat-form-field class="input">
+    <input matInput [(ngModel)]="password" type="password" placeholder="Password"/>
+  </mat-form-field>
+
+  <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
+
+  <button mat-raised-button class="button" color="primary" (click)="login()">
+    Log in
+  </button>
+</mat-card>
