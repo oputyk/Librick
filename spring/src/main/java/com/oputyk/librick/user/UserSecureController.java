@@ -22,13 +22,8 @@ public class UserSecureController {
         return userService.findCurrentUserDto();
     }
 
-    @GetMapping("get")
-    public String get() {
-        return "hi secured!";
-    }
-
     @PreAuthorize("hasRole('ROLE_ADMIN')")
-    @GetMapping("{id}")
+    @GetMapping("user/{id}")
     public UserDto getUser(@PathVariable("id") Long id) {
          return userService.findUserDtoById(id);
     }

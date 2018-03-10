@@ -14,6 +14,7 @@ import {Subject} from "rxjs/Subject";
 export class AuthenticationService {
   private tokenKey: string = "tokenKey";
   private loggedIn$ = new Subject<boolean>();
+  private userKey: string = "userKey";
 
   constructor(private http: HttpClient) { }
 
@@ -52,11 +53,23 @@ export class AuthenticationService {
     return localStorage.getItem(this.tokenKey);
   }
 
+  getUser(): Observable<User> {
+    let user$: Observable<User>;
+    if(this.isUserSaved()) {
+      user$ = Observable.of(this.retrieveUserFromLocalStorage());
+    }
+    else {
+      user$ = this.retrieveUserByHttp();
+    }
+
+    return user$;
+  }
+
   isAuthenticated(): boolean {
     return !isNullOrUndefined(localStorage.getItem(this.tokenKey));
   }
 
-  private getTokenFromResponse(response: HttpResponse<string>) {
+  private getTokenFromResponse(response: HttpResponse<string>): string {
     let token = response.headers.get('Authorization');
     token = token.replace("Bearer ", "");
     return token;
@@ -68,6 +81,25 @@ export class AuthenticationService {
 
   private removeToken() {
     localStorage.removeItem(this.tokenKey);
+  }
+
+  private retrieveUserFromLocalStorage(): User {
+    return <User> (JSON.parse(localStorage.getItem(this.userKey)));
+  }
+
+  private isUserSaved(): boolean {
+    return !isNullOrUndefined(this.retrieveUserFromLocalStorage());
+  }
+
+  private retrieveUserByHttp(): Observable<User> {
+     return this.http.post<User>("api/user/secure/current", null).do(
+       (user: User) => {
+         this.saveUser(user);
+       });
+  }
+
+  private saveUser(user: User) {
+    localStorage.setItem(this.userKey, JSON.stringify(user));
   }
 }
 

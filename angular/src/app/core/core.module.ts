@@ -13,6 +13,9 @@ import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
 import {MaterialModule} from "./material.module";
 import {FormsModule} from "@angular/forms";
+import {NoopInterceptor} from "@angular/common/http/src/interceptor";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {TokenHttpInterceptor} from "./services/api/interceptors/token-http-interceptor.service";
 
 @NgModule({
   imports: [
@@ -36,7 +39,12 @@ import {FormsModule} from "@angular/forms";
     FooterComponent
   ],
   providers: [
-    AuthGuard
+    AuthGuard,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: TokenHttpInterceptor,
+      multi: true,
+    }
   ]
 })
 export class CoreModule { }

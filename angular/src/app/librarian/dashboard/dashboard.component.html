@@ -1,2 +1,3 @@
 <button mat-raised-button color="primary" (click)="logout()">Logout</button>
 <p>Your token is - {{token}}</p>
+<p>Your user's email is - {{(user$ | async).email}}</p>
