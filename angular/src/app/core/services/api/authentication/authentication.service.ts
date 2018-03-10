@@ -7,31 +7,41 @@ import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/operator/map';
 import {isNullOrUndefined} from "util";
+import {ErrorObservable} from "rxjs/observable/ErrorObservable";
+import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class AuthenticationService {
   private tokenKey: string = "tokenKey";
+  private loggedIn$ = new Subject<boolean>();
 
   constructor(private http: HttpClient) { }
 
   login(email: string, password: string): Observable<boolean> {
     let body = {email: email, password: password};
 
-    return this.http.post(`api/login`, body, {responseType: 'text', observe: 'response'}).map(
+    this.http.post(`api/login`, body, {responseType: 'text', observe: 'response'}).subscribe(
       (response: HttpResponse<string>) => {
         let token = this.getTokenFromResponse(response);
 
         if(token) {
           this.saveToken(token);
-          return true;
-        } else {
-          return false;
+          this.loggedIn$.next(true);
         }
-      }
-    ).catch(
-      (err: any) => {
-        return Observable.throw(err.json().error);
-    });
+        else {
+          throw new Error("Couldn't receive token. Response status - " + response.status);
+        }
+      },
+      (error: any) => {
+        if(error.status === 401) {
+          this.loggedIn$.next(false);
+        }
+        else {
+          throw error;
+        }
+      });
+
+    return this.loggedIn$.asObservable();
   }
 
   logout() {

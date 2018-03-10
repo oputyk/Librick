@@ -9,9 +9,9 @@
     <input matInput [(ngModel)]="password" type="password" placeholder="Password"/>
   </mat-form-field>
 
-  <input type="hidden"  name="${_csrf.parameterName}"   value="${_csrf.token}"/>
-
   <button mat-raised-button class="button" color="primary" (click)="login()">
     Log in
   </button>
+
+  <p class="bad-credentials" *ngIf="(isLoggedIn$ | async) === false">Wrong email or password</p>
 </mat-card>
