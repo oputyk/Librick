@@ -58,7 +58,7 @@ export class AuthenticationService {
 
   private getTokenFromResponse(response: HttpResponse<string>) {
     let token = response.headers.get('Authorization');
-    token.replace("Bearer ", "");
+    token = token.replace("Bearer ", "");
     return token;
   }
 
