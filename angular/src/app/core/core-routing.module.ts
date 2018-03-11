@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {PageNotFoundComponent} from "./page-not-found/page-not-found.component";
 import {LoginComponent} from "./login/login.component";
 import {AuthGuard} from "./guards/auth.guard";
+import {RegisterLibrarianComponent} from "./register-librarian/register-librarian.component";
 
 const routes: Routes = [
   {
@@ -16,7 +17,13 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    pathMatch: 'full',
     component: LoginComponent
+  },
+  {
+    path: 'register-librarian',
+    pathMatch: 'full',
+    component: RegisterLibrarianComponent
   },
   { path: "**", component: PageNotFoundComponent }
 ];

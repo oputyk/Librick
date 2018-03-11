@@ -9,6 +9,7 @@ import 'rxjs/add/operator/map';
 import {isNullOrUndefined} from "util";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {Subject} from "rxjs/Subject";
+import {UserApiService} from "../user-api/user-api.service";
 
 @Injectable()
 export class AuthenticationService {
@@ -16,7 +17,7 @@ export class AuthenticationService {
   private loggedIn$ = new Subject<boolean>();
   private userKey: string = "userKey";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private userApiService: UserApiService) { }
 
   login(email: string, password: string): Observable<boolean> {
     let body = {email: email, password: password};
@@ -92,7 +93,7 @@ export class AuthenticationService {
   }
 
   private retrieveUserByHttp(): Observable<User> {
-     return this.http.post<User>("api/user/secure/current", null).do(
+     return this.userApiService.getUser().do(
        (user: User) => {
          this.saveUser(user);
        });

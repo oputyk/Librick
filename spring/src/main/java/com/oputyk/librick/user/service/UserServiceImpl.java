@@ -2,13 +2,19 @@ package com.oputyk.librick.user.service;
 
 import com.oputyk.librick.security.service.authenticationfacade.AuthenticationFacade;
 import com.oputyk.librick.user.converter.UserConverter;
+import com.oputyk.librick.user.domain.Role;
 import com.oputyk.librick.user.domain.UserEntity;
 import com.oputyk.librick.user.domain.UserRepository;
+import com.oputyk.librick.user.dto.CredentialsUserDto;
 import com.oputyk.librick.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * Created by kamil on 11/02/2018.
@@ -22,6 +28,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserConverter userConverter;
+
+    @Autowired
+    private RegistrationService registrationService;
 
     @Autowired
     private AuthenticationFacade authenticationFacade;
@@ -38,6 +47,11 @@ public class UserServiceImpl implements UserService {
         UserEntity userEntity = findUserEntityByEmail(email);
 
         return userConverter.toUserDto(userEntity);
+    }
+
+    @Override
+    public boolean registerLibrarian(CredentialsUserDto credentialsUserDto) {
+        return registrationService.registerUser(credentialsUserDto, Role.ROLE_LIBRARIAN);
     }
 
     @Override

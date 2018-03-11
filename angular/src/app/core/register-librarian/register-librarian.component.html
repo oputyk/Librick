@@ -1,0 +1,26 @@
+<mat-card class="card">
+  <mat-card-title class="card-title">Sign Up Librick Librarian</mat-card-title>
+
+  <mat-form-field class="input">
+    <input matInput [(ngModel)]="userCredentials.email" type="email" placeholder="Email" required/>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput [(ngModel)]="userCredentials.password" type="password" placeholder="Password" required/>
+  </mat-form-field>
+
+  <mat-form-field class="input">
+    <input matInput [(ngModel)]="repeatedPassword" type="password" placeholder="Repeat password" required/>
+  </mat-form-field>
+
+  <button mat-raised-button class="button" color="primary" (click)="registerLibrarian()">
+    Sign Up!
+  </button>
+
+  <mat-divider></mat-divider>
+
+  <p class="login">
+    Don you have an account?
+    <a class="login-link" routerLink="/login" routerLinkActive = "active">Log In!</a>
+  </p>
+</mat-card>

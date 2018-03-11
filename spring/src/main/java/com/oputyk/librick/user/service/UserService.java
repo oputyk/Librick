@@ -1,6 +1,7 @@
 package com.oputyk.librick.user.service;
 
 import com.oputyk.librick.user.domain.UserEntity;
+import com.oputyk.librick.user.dto.CredentialsUserDto;
 import com.oputyk.librick.user.dto.UserDto;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,4 +19,6 @@ public interface UserService {
     UserDto findCurrentUserDto();
 
     UserDto findUserDtoByEmail(String name);
+
+    boolean registerLibrarian(CredentialsUserDto credentialsUserDto);
 }

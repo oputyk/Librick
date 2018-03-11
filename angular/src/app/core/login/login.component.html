@@ -2,16 +2,26 @@
   <mat-card-title class="card-title">Login to Librick Librarian</mat-card-title>
 
   <mat-form-field class="input">
-    <input matInput [(ngModel)]="email" type="email" placeholder="Email"/>
+    <input matInput [(ngModel)]="email" type="email" placeholder="Email" required/>
   </mat-form-field>
 
   <mat-form-field class="input">
-    <input matInput [(ngModel)]="password" type="password" placeholder="Password"/>
+    <input matInput [(ngModel)]="password" type="password" placeholder="Password" required/>
   </mat-form-field>
 
   <button mat-raised-button class="button" color="primary" (click)="login()">
-    Log in
+    Log in!
   </button>
 
-  <p class="bad-credentials" *ngIf="(isLoggedIn$ | async) === false">Wrong email or password</p>
+  <div class="bad-credentials-div">
+    <mat-error *ngIf="(isLoggedIn$ | async) === false">
+      Wrong email or password
+    </mat-error>
+  </div>
+  <mat-divider></mat-divider>
+
+  <p class="register">
+    Don't you have an account?
+    <a class="register-link" routerLink="/register-librarian" routerLinkActive = "active">Sign Up!</a>
+  </p>
 </mat-card>

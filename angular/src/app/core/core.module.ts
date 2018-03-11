@@ -16,6 +16,7 @@ import {FormsModule} from "@angular/forms";
 import {NoopInterceptor} from "@angular/common/http/src/interceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
 import {TokenHttpInterceptor} from "./services/api/interceptors/token-http-interceptor.service";
+import { RegisterLibrarianComponent } from './register-librarian/register-librarian.component';
 
 @NgModule({
   imports: [
@@ -31,10 +32,12 @@ import {TokenHttpInterceptor} from "./services/api/interceptors/token-http-inter
     HeaderComponent,
     FooterComponent,
     PageNotFoundComponent,
-    LoginComponent
+    LoginComponent,
+    RegisterLibrarianComponent
   ],
   exports: [
     CoreRoutingModule,
+    MaterialModule,
     HeaderComponent,
     FooterComponent
   ],
