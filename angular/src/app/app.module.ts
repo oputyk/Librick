@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
+import {HttpClientModule} from "@angular/common/http";
+import {NgHttpLoaderModule} from "ng-http-loader/ng-http-loader.module";
 
 
 @NgModule({
@@ -12,7 +14,9 @@ import {CoreModule} from "./core/core.module";
   ],
   imports: [
     BrowserModule,
-    CoreModule
+    CoreModule,
+    HttpClientModule,
+    NgHttpLoaderModule
   ],
   providers: [],
   bootstrap: [AppComponent]
