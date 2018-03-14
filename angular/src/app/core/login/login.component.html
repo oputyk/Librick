@@ -1,27 +1,31 @@
-<mat-card class="card">
-  <mat-card-title class="card-title">Login to Librick Librarian</mat-card-title>
+<div class="container" fxLayout="column">
+  <mat-card fxLayoutAlign="space-around center" fxFlexAlign="center" fxLayout="column" class="card">
 
-  <mat-form-field class="input">
-    <input matInput [(ngModel)]="email" type="email" placeholder="Email" required/>
-  </mat-form-field>
+    <mat-card-title class="title" fxFlexAlign="stretch">Login to Librick Librarian</mat-card-title>
 
-  <mat-form-field class="input">
-    <input matInput [(ngModel)]="password" type="password" placeholder="Password" required/>
-  </mat-form-field>
+    <mat-form-field fxFlexAlign="stretch">
+      <input matInput [(ngModel)]="email" type="email" placeholder="Email" required/>
+    </mat-form-field>
 
-  <button mat-raised-button class="button" color="primary" (click)="login()">
-    Log in!
-  </button>
+    <mat-form-field fxFlexAlign="stretch">
+      <input matInput [(ngModel)]="password" type="password" placeholder="Password" required/>
+    </mat-form-field>
 
-  <div class="bad-credentials-div">
-    <mat-error *ngIf="(isLoggedIn$ | async) === false">
+    <button fxFlexAlign="stretch" mat-raised-button color="primary" (click)="login()">
+      Log in!
+    </button>
+
+    <p class="error" fxFlexAlign="stretch" *ngIf="(isLoggedIn$ | async) === false">
       Wrong email or password
-    </mat-error>
-  </div>
-  <mat-divider></mat-divider>
+    </p>
 
-  <p class="register">
-    Don't you have an account?
-    <a class="register-link" routerLink="/register-librarian" routerLinkActive = "active">Sign Up!</a>
-  </p>
-</mat-card>
+    <div fxFlexAlign="stretch" fxLayout="column" fxLayoutAlign="center" class="spacer">
+      <mat-divider></mat-divider>
+    </div>
+
+    <p class="sign-up" fxFlexAlign="stretch">
+      Don't you have an account?
+      <a class="register-link" routerLink="/register-librarian" routerLinkActive = "active">Sign Up!</a>
+    </p>
+  </mat-card>
+</div>
