@@ -1,35 +1,38 @@
-<mat-card class="card">
-  <mat-card-title class="card-title">Sign Up Librick Librarian</mat-card-title>
+<div class="container" fxLayout="column">
+  <mat-card fxLayoutAlign="space-around center" fxFlexAlign="center" fxLayout="column" class="card">
+    <mat-card-title class="title" fxFlexAlign="stretch">Sign Up Librick Librarian</mat-card-title>
 
-  <mat-form-field class="input">
-    <input matInput [(ngModel)]="userCredentials.email" type="email" placeholder="Email" required/>
-  </mat-form-field>
+    <mat-form-field fxFlexAlign="stretch">
+      <input matInput [(ngModel)]="userCredentials.email" type="email" placeholder="Email" required/>
+    </mat-form-field>
 
-  <mat-form-field class="input">
-    <input matInput [(ngModel)]="userCredentials.password" type="password" placeholder="Password" required/>
-  </mat-form-field>
+    <mat-form-field fxFlexAlign="stretch">
+      <input matInput [(ngModel)]="userCredentials.password" type="password" placeholder="Password" required/>
+    </mat-form-field>
 
-  <mat-form-field class="input">
-    <input matInput [(ngModel)]="repeatedPassword" type="password" placeholder="Repeat password" required/>
-  </mat-form-field>
+    <mat-form-field fxFlexAlign="stretch">
+      <input matInput [(ngModel)]="repeatedPassword" type="password" placeholder="Repeat password" required/>
+    </mat-form-field>
 
-  <button mat-raised-button class="button" color="primary" (click)="registerLibrarian()">
-    Sign Up!
-  </button>
+    <button mat-raised-button fxFlexAlign="stretch" class="button" color="primary" (click)="registerLibrarian()">
+      Sign Up!
+    </button>
 
-  <div class="error">
-    <mat-error *ngIf="userCredentials.password != repeatedPassword">
-      Password and repeated password are different
-    </mat-error>
-    <mat-error *ngIf="(isRegistered$ | async) === false">
-      User with this email already exists
-    </mat-error>
-  </div>
+    <p class="error" fxFlexAlign="stretch" *ngIf="userCredentials.password != repeatedPassword">
+        Password and repeated password are different
+    </p>
 
-  <mat-divider></mat-divider>
+    <p class="error" fxFlexAlign="stretch" *ngIf="(isRegistered$ | async) === false">
+        User with this email already exists
+    </p>
 
-  <p class="login">
-    Do you have an account?
-    <a class="login-link" routerLink="/login" routerLinkActive = "active">Log In!</a>
-  </p>
-</mat-card>
+    <div fxFlexAlign="stretch" fxLayout="column" fxLayoutAlign="center" class="spacer">
+      <mat-divider></mat-divider>
+    </div>
+
+    <p class="login" fxFlexAlign="stretch">
+      Do you have an account?
+      <a class="login-link" routerLink="/login" routerLinkActive = "active">Log In!</a>
+    </p>
+  </mat-card>
+</div>
