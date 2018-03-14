@@ -48,6 +48,7 @@ export class AuthenticationService {
 
   logout() {
     this.removeToken();
+    this.removeUser();
   }
 
   getToken(): string {
@@ -82,6 +83,10 @@ export class AuthenticationService {
 
   private removeToken() {
     localStorage.removeItem(this.tokenKey);
+  }
+
+  private removeUser() {
+    localStorage.removeItem(this.userKey);
   }
 
   private retrieveUserFromLocalStorage(): User {
