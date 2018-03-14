@@ -1,3 +1,5 @@
+@import "variables";
+
 %center {
   margin: auto;
 }
@@ -28,16 +30,19 @@
 
 .button {
   margin-top: 0.5em;
-  margin-bottom: 2em;
   width: 70%;
+}
+.error {
+  margin-top: 1em;
+  margin-bottom: 1em;
 }
 
 .login {
-  margin-top: 1.5em;
+  margin-top: 2.5em;
 }
 
 .login-link {
   text-decoration: none;
-  color: blue;
+  color: $primary;
 }
 

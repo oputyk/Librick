@@ -17,10 +17,19 @@
     Sign Up!
   </button>
 
+  <div class="error">
+    <mat-error *ngIf="userCredentials.password != repeatedPassword">
+      Password and repeated password are different
+    </mat-error>
+    <mat-error *ngIf="(isRegistered$ | async) === false">
+      User with this email already exists
+    </mat-error>
+  </div>
+
   <mat-divider></mat-divider>
 
   <p class="login">
-    Don you have an account?
+    Do you have an account?
     <a class="login-link" routerLink="/login" routerLinkActive = "active">Log In!</a>
   </p>
 </mat-card>

@@ -1,5 +1,5 @@
 # Librick
-Librick is a library web application.
+Librick is a library web application made by Kamil Cegliński.
 
 # Backend technologies
 - IntelliJ IDEA
@@ -8,15 +8,16 @@ Librick is a library web application.
 - Spring MVC (REST)
 - Spring Data JPA
 - MySQL (XAMPP)
-- Lombok
 - Maven
+- Lombok
 - ModelMapper
 
 # Frontend technologies
 - IntelliJ IDEA
 - Typescipt
 - Angular (Angular CLI)
-- NPM
-- Sass (scss)
 - Angular Material Design
+- Angular Flex Layout
+- Sass (scss)
+- NPM
 - ng-http-loader

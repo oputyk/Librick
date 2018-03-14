@@ -15,6 +15,8 @@ import {FormsModule} from "@angular/forms";
 import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {TokenHttpInterceptor} from "./services/api/interceptors/token-http-interceptor.service";
 import { RegisterLibrarianComponent } from './register-librarian/register-librarian.component';
+import 'hammerjs';
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   imports: [
@@ -25,6 +27,7 @@ import { RegisterLibrarianComponent } from './register-librarian/register-librar
     ApiModule,
     PublicModule,
     LibrarianModule,
+    FlexLayoutModule
   ],
   declarations: [
     HeaderComponent,
@@ -38,6 +41,7 @@ import { RegisterLibrarianComponent } from './register-librarian/register-librar
     MaterialModule,
     HeaderComponent,
     FooterComponent,
+    FlexLayoutModule
   ],
   providers: [
     AuthGuard,
