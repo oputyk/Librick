@@ -5,7 +5,8 @@
     "baseUrl": "./",
     "paths": {
       "@app/*": ["app/*"],
-      "@env/*": ["environments/*"]
+      "@env/*": ["environments/*"],
+      "@src/*": ["./*"]
     },
     "module": "es2015",
     "types": []
