@@ -3,3 +3,9 @@
 .toolbar {
   @include mat-elevation(4);
 }
+
+.mat-divider {
+  border-right-width: 1px;
+  height: 70%;
+  border-right-style: solid;
+}

@@ -1,11 +1,11 @@
-<div fxLayout="column" fxLayoutGap="10px" class="container">
-  <app-header class="header" fxFlexAlign="top"></app-header>
+<div fxLayout="column" fxLayoutGap="1em" class="container">
+  <app-header></app-header>
 
-  <div class="body" fxFlexAlign="top">
+  <div fxLayout="column" fxFlex="grow">
     <router-outlet></router-outlet>
   </div>
 
-  <app-footer class="footer" fxFlexAlign="end"></app-footer>
+  <app-footer></app-footer>
 </div>
 
 <spinner
