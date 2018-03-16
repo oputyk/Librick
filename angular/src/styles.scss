@@ -4,8 +4,13 @@
 
 @import 'themes/app-theme';
 
+$custom-typography: mat-typography-config(
+  $font-family: 'Helvetica'
+);
+
 .app-theme {
   @include angular-material-theme($app-theme);
+  @include mat-core($custom-typography);
 }
 
 .body {

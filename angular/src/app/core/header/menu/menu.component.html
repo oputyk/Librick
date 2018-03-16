@@ -1,0 +1,8 @@
+<button
+  [routerLink]="link.url"
+  routerLinkActive="active"
+  mat-button
+  *ngFor="let link of links"
+  class="link">
+    {{ link.name }}
+</button>

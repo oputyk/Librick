@@ -1,5 +1,9 @@
 <mat-toolbar class="toolbar" color="primary">
-  <mat-toolbar-row fxLayout="row">
-    <span fxFlexAlign="center"><b>Librick Lirary</b></span>
+  <mat-toolbar-row fxLayoutGap="1em" fxLayoutAlign="start center" fxLayout="row">
+    <span><b>Librick Lirary</b></span>
+
+    <app-menu fxFlex [links]="[{name: 'Home', url: '/home'}]"></app-menu>
+
+    <app-menu fxFlex fxLayoutAlign="end center" [links]="[{name: 'Login', url: '/login'}]"></app-menu>
   </mat-toolbar-row>
 </mat-toolbar>

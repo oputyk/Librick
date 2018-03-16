@@ -17,6 +17,7 @@ import {TokenHttpInterceptor} from "./services/api/interceptors/token-http-inter
 import { RegisterLibrarianComponent } from './register-librarian/register-librarian.component';
 import 'hammerjs';
 import {FlexLayoutModule} from "@angular/flex-layout";
+import { MenuComponent } from './header/menu/menu.component';
 
 @NgModule({
   imports: [
@@ -34,7 +35,8 @@ import {FlexLayoutModule} from "@angular/flex-layout";
     FooterComponent,
     PageNotFoundComponent,
     LoginComponent,
-    RegisterLibrarianComponent
+    RegisterLibrarianComponent,
+    MenuComponent
   ],
   exports: [
     CoreRoutingModule,
