@@ -4,7 +4,7 @@
 
 import {HttpHandler, HttpInterceptor, HttpRequest} from "@angular/common/http";
 import {Injectable} from "@angular/core";
-import {AuthenticationService} from "../authentication/authentication.service";
+import {AuthenticationService} from "../../authentication/authentication.service";
 @Injectable()
 export class TokenHttpInterceptor  implements HttpInterceptor {
   constructor(private authenticationService: AuthenticationService) {}

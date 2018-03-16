@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {UserApiService} from "./user-api/user-api.service";
 import {HttpClientModule} from "@angular/common/http";
-import {AuthenticationService} from "./authentication/authentication.service";
 
 @NgModule({
   imports: [
@@ -10,8 +9,7 @@ import {AuthenticationService} from "./authentication/authentication.service";
     HttpClientModule
   ],
   providers:[
-    UserApiService,
-    AuthenticationService
+    UserApiService
   ],
   exports: [
     HttpClientModule

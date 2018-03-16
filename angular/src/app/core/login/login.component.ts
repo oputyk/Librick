@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticationService} from "../services/api/authentication/authentication.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 import {LoginService} from "./login.service";
 import {HttpClient, HttpHeaders, HttpResponse} from "@angular/common/http";
 import {Observable} from "rxjs/Observable";

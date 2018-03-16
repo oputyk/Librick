@@ -18,6 +18,7 @@ import { RegisterLibrarianComponent } from './register-librarian/register-librar
 import 'hammerjs';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { MenuComponent } from './header/menu/menu.component';
+import {AuthenticationService} from "./services/authentication/authentication.service";
 
 @NgModule({
   imports: [
@@ -46,6 +47,7 @@ import { MenuComponent } from './header/menu/menu.component';
     FlexLayoutModule
   ],
   providers: [
+    AuthenticationService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,

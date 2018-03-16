@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {User} from "../../shared/models/user.model";
-import {AuthenticationService} from "../services/api/authentication/authentication.service";
+import {AuthenticationService} from "../services/authentication/authentication.service";
 import {Router} from "@angular/router";
 import {log} from "util";
 import {Observable} from "rxjs/Observable";

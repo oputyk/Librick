@@ -9,7 +9,7 @@ import 'rxjs/add/operator/map';
 import {isNullOrUndefined} from "util";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {Subject} from "rxjs/Subject";
-import {UserApiService} from "../user-api/user-api.service";
+import {UserApiService} from "../api/user-api/user-api.service";
 
 @Injectable()
 export class AuthenticationService {
