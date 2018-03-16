@@ -2,7 +2,7 @@
   [routerLink]="link.url"
   routerLinkActive="active"
   mat-button
-  *ngFor="let link of links"
+  *ngFor="let link of (links$ | async)"
   class="link">
     {{ link.name }}
 </button>

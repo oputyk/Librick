@@ -2,10 +2,10 @@
   <mat-toolbar-row fxLayoutGap="1em" fxLayoutAlign="start center" fxLayout="row">
     <span><b>Librick Lirary</b></span>
 
-    <app-menu fxFlex fxLayoutAlign="start center" [links]="[{name: 'Home', url: '/home'}]"></app-menu>
+    <app-menu fxFlex fxLayoutAlign="start center" [links$]="navLinks$"></app-menu>
 
     <mat-divider class="mat-divider"></mat-divider>
 
-    <app-menu fxLayoutAlign="end center" [links]="[{name: 'Sign Up', url: '/register-librarian'}, {name: 'Login', url: '/login'}]"></app-menu>
+    <app-menu fxLayoutAlign="end center" [links$]="accountLinks$"></app-menu>
   </mat-toolbar-row>
 </mat-toolbar>

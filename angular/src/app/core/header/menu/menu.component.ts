@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Link} from "../../../shared/models/link.model";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: 'app-menu',
@@ -9,7 +10,7 @@ import {Link} from "../../../shared/models/link.model";
 export class MenuComponent implements OnInit {
 
   @Input()
-  links: Link[];
+  links$: Observable<Link[]>;
 
   constructor() { }
 

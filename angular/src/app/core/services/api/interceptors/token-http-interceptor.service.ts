@@ -7,11 +7,19 @@ import {Injectable} from "@angular/core";
 import {AuthenticationService} from "../../authentication/authentication.service";
 @Injectable()
 export class TokenHttpInterceptor  implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {}
+  private isAuthenticated: boolean = false;
+
+  constructor(private authenticationService: AuthenticationService) {
+    this.authenticationService.isAuthenticated().subscribe(
+      (isAuthenticated: boolean) => {
+        this.isAuthenticated = isAuthenticated;
+      }
+    )
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     let authReq = req;
-    if(this.authenticationService.isAuthenticated()) {
+    if(this.isAuthenticated) {
       authReq = this.addTokenToRequestHeaders(authReq, req);
     }
 

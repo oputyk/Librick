@@ -10,14 +10,20 @@ import {isNullOrUndefined} from "util";
 import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {Subject} from "rxjs/Subject";
 import {UserApiService} from "../api/user-api/user-api.service";
+import {BehaviorSubject} from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class AuthenticationService {
   private tokenKey: string = "tokenKey";
-  private loggedIn$ = new Subject<boolean>();
+  private loggedInSuccessfully$ = new Subject<boolean>();
   private userKey: string = "userKey";
+  private isAuthenticated$: BehaviorSubject<boolean>;
 
-  constructor(private http: HttpClient, private userApiService: UserApiService) { }
+  constructor(private http: HttpClient, private userApiService: UserApiService) {
+    let isAuthenticated: boolean = !isNullOrUndefined(localStorage.getItem(this.tokenKey));
+
+    this.isAuthenticated$ = new BehaviorSubject(isAuthenticated);
+  }
 
   login(email: string, password: string): Observable<boolean> {
     let body = {email: email, password: password};
@@ -28,7 +34,8 @@ export class AuthenticationService {
 
         if(token) {
           this.saveToken(token);
-          this.loggedIn$.next(true);
+          this.loggedInSuccessfully$.next(true);
+          this.isAuthenticated$.next(true);
         }
         else {
           throw new Error("Couldn't receive token. Response status - " + response.status);
@@ -36,19 +43,21 @@ export class AuthenticationService {
       },
       (error: any) => {
         if(error.status === 401) {
-          this.loggedIn$.next(false);
+          this.loggedInSuccessfully$.next(false);
         }
         else {
           throw error;
         }
       });
 
-    return this.loggedIn$.asObservable();
+    return this.loggedInSuccessfully$.asObservable();
   }
 
   logout() {
     this.removeToken();
     this.removeUser();
+
+    this.isAuthenticated$.next(false);
   }
 
   getToken(): string {
@@ -67,8 +76,8 @@ export class AuthenticationService {
     return user$;
   }
 
-  isAuthenticated(): boolean {
-    return !isNullOrUndefined(localStorage.getItem(this.tokenKey));
+  isAuthenticated(): Observable<boolean> {
+    return this.isAuthenticated$.asObservable().distinctUntilChanged();
   }
 
   private getTokenFromResponse(response: HttpResponse<string>): string {

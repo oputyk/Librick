@@ -19,6 +19,7 @@ import 'hammerjs';
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { MenuComponent } from './header/menu/menu.component';
 import {AuthenticationService} from "./services/authentication/authentication.service";
+import {NavigationLinksProviderService} from "./services/navigation-links-provider.service";
 
 @NgModule({
   imports: [
@@ -48,6 +49,7 @@ import {AuthenticationService} from "./services/authentication/authentication.se
   ],
   providers: [
     AuthenticationService,
+    NavigationLinksProviderService,
     AuthGuard,
     {
       provide: HTTP_INTERCEPTORS,
