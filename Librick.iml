@@ -6,8 +6,8 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/Angular/Librick/dist" />
       <excludeFolder url="file://$MODULE_DIR$/Angular/Librick/tmp" />
-      <excludeFolder url="file://$MODULE_DIR$/Angular/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/Angular/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/angular/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/angular/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />

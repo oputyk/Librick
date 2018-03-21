@@ -3,6 +3,7 @@
   routerLinkActive="active"
   mat-button
   *ngFor="let link of (links$ | async)"
-  class="link">
-    {{ link.name }}
+  class="link"
+  (click)="link.callback()">
+    {{ link.name$ | async }}
 </button>

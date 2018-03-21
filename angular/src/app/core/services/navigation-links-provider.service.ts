@@ -11,17 +11,17 @@ export class NavigationLinksProviderService {
   private links$: BehaviorSubject<Link[]> = new BehaviorSubject([]);
 
   private publicLinks: Link[] = [
-    new Link("Home", "/home")];
+    new Link(Observable.of("Home"), "/home")];
 
   private librarianLinks: Link[] = [
-    new Link("Dashboard", "/librarian/dashboard")];
+    new Link(Observable.of("Dashboard"), "/librarian/dashboard")];
 
-  constructor(private router: Router, private authGuard: AuthGuard) {
+  constructor(private router: Router) {
     this.router.events
       .filter(event => event instanceof NavigationEnd)
       .subscribe(
         (event: NavigationEnd) => {
-          if(event.url.includes("/librarian")) {
+          if(event.url.includes("/librarian", 0)) {
             this.setLinks(this.librarianLinks);
           } else {
             this.setLinks(this.publicLinks);
