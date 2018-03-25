@@ -33,7 +33,7 @@ export class HeaderService {
 
   initAuthenticatedAccountLinks() {
     this.authenticatedAccountLinks = [
-      new Link(this.authenticationService.getUser().map((user: User) => user.email), ""),
+      new Link(this.authenticationService.getUser().map((user: User) => user.email), "/user-profile"),
       new Link(Observable.of("Logout"), "/login", () => this.authenticationService.logout())];
   }
 

@@ -1,6 +1,6 @@
 package com.oputyk.librick.user;
 
-import com.oputyk.librick.security.service.authenticationfacade.AuthenticationFacade;
+import com.oputyk.librick.user.dto.ChangePasswordUserDto;
 import com.oputyk.librick.user.dto.UserDto;
 import com.oputyk.librick.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +22,14 @@ public class UserSecureController {
         return userService.findCurrentUserDto();
     }
 
+    @PostMapping("change-password")
+    public boolean changePassword(@RequestBody ChangePasswordUserDto changePasswordUserDto) {
+        return userService.changePassword(changePasswordUserDto);
+    }
+
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @GetMapping("user/{id}")
-    public UserDto getUser(@PathVariable("id") Long id) {
+    public UserDto getUser(@PathVariable Long id) {
          return userService.findUserDtoById(id);
     }
 }

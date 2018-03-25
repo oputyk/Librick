@@ -1,0 +1,17 @@
+@import "variables";
+
+:host {
+  flex-grow: 1;
+  display: flex;
+}
+
+.card {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 1em;
+  width: 55%;
+}
+
+.card-title {
+  color: $primary;
+}

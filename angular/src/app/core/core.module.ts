@@ -20,6 +20,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { MenuComponent } from './header/menu/menu.component';
 import {AuthenticationService} from "./services/authentication/authentication.service";
 import {NavigationLinksProviderService} from "./services/navigation-links-provider.service";
+import {UserProfileModule} from "./user-profile/user-profile.module";
 
 @NgModule({
   imports: [
@@ -30,7 +31,8 @@ import {NavigationLinksProviderService} from "./services/navigation-links-provid
     ApiModule,
     PublicModule,
     LibrarianModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    UserProfileModule
   ],
   declarations: [
     HeaderComponent,

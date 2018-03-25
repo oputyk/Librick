@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {User} from "@app/shared/models/user.model";
 import {Observable} from "rxjs/Observable";
-import {environment} from "@env/environment";
-import {UserCredentials} from "@app/shared/models/user-credentials.model";
+import {User} from "../../../../shared/models/user.model";
+import {UserCredentials} from "../../../../shared/models/user-credentials.model";
 
 @Injectable()
 export class UserApiService {
@@ -15,5 +14,9 @@ export class UserApiService {
 
   registerLibrarian(userCredentials: UserCredentials): Observable<boolean> {
     return this.http.post<boolean>('/api/user/register-librarian', userCredentials);
+  }
+
+  changePassword(oldPassword: string, newPassword: string): Observable<boolean> {
+    return this.http.post<boolean>("/api/user/secure/change-password", {oldPassword: oldPassword, newPassword: newPassword});
   }
 }

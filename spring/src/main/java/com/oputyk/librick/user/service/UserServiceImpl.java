@@ -5,6 +5,7 @@ import com.oputyk.librick.user.converter.UserConverter;
 import com.oputyk.librick.user.domain.Role;
 import com.oputyk.librick.user.domain.UserEntity;
 import com.oputyk.librick.user.domain.UserRepository;
+import com.oputyk.librick.user.dto.ChangePasswordUserDto;
 import com.oputyk.librick.user.dto.CredentialsUserDto;
 import com.oputyk.librick.user.dto.UserDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,6 +36,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private AuthenticationFacade authenticationFacade;
 
+    @Autowired
+    private PasswordEncoder encoder;
+
     @Override
     public UserDto findCurrentUserDto() {
         Authentication authentication = authenticationFacade.getAuthentication();
@@ -52,6 +56,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public boolean registerLibrarian(CredentialsUserDto credentialsUserDto) {
         return registrationService.registerUser(credentialsUserDto, Role.ROLE_LIBRARIAN);
+    }
+
+    @Override
+    public boolean changePassword(ChangePasswordUserDto changePasswordUserDto) {
+        String oldPassword = changePasswordUserDto.getOldPassword();
+        String newPassword = changePasswordUserDto.getNewPassword();
+
+        Authentication authentication = authenticationFacade.getAuthentication();
+        UserEntity currentUser = findUserEntityByEmail(authentication.getName());
+
+        if(encoder.matches(oldPassword, currentUser.getPassword())) {
+            newPassword = encoder.encode(newPassword);
+            currentUser.setPassword(newPassword);
+
+            return true;
+        } else {
+            return false;
+        }
     }
 
     @Override
