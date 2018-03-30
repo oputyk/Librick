@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {CoreModule} from "./core/core.module";
 import {HttpClientModule} from "@angular/common/http";
 import {NgHttpLoaderModule} from "ng-http-loader/ng-http-loader.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 
 @NgModule({
@@ -14,6 +15,7 @@ import {NgHttpLoaderModule} from "ng-http-loader/ng-http-loader.module";
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     CoreModule,
     HttpClientModule,
     NgHttpLoaderModule

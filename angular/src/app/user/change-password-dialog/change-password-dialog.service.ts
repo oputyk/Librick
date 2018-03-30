@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {UserApiService} from "../../services/api/user-api/user-api.service";
+import {UserApiService} from "../../core/services/api/user-api/user-api.service";
 import {Observer} from "rxjs/Observer";
 import {Observable} from "rxjs/Observable";
 

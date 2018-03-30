@@ -23,6 +23,8 @@ export class NavigationLinksProviderService {
         (event: NavigationEnd) => {
           if(event.url.includes("/librarian", 0)) {
             this.setLinks(this.librarianLinks);
+          } else if(event.url.includes("/user", 0)) {
+            // do not anything
           } else {
             this.setLinks(this.publicLinks);
           }

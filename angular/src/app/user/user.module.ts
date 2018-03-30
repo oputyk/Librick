@@ -2,18 +2,18 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {UserProfileComponent} from "./user-profile.component";
 import { ChangePasswordDialogComponent } from './change-password-dialog/change-password-dialog.component';
-import {MaterialModule} from "../material.module";
+import {MaterialModule} from "../core/material.module";
 import {FormsModule} from "@angular/forms";
 import {FlexLayoutModule} from "@angular/flex-layout";
-import {ApiModule} from "../services/api/api.module";
+import {UserRoutingModule} from "./user-routing.module";
 
 @NgModule({
   imports: [
     CommonModule,
+    UserRoutingModule,
     FormsModule,
     MaterialModule,
-    FlexLayoutModule,
-    ApiModule
+    FlexLayoutModule
   ],
   declarations: [
     UserProfileComponent,
@@ -24,4 +24,4 @@ import {ApiModule} from "../services/api/api.module";
   ],
   exports: [UserProfileComponent]
 })
-export class UserProfileModule { }
+export class UserModule { }

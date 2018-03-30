@@ -1,5 +1,5 @@
 import {Component, Inject, OnInit} from '@angular/core';
-import {MAT_DIALOG_DATA, MatDialogRef, MatFormField} from "@angular/material";
+import {MatDialogRef, MatFormField} from "@angular/material";
 import {ChangePasswordDialogService} from "./change-password-dialog.service";
 
 @Component({
