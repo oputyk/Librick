@@ -10,8 +10,5 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("book/secure")
 public class BookSecureController {
-    @RequestMapping("hi")
-    public String hi() {
-        return "secured hi";
-    }
+
 }

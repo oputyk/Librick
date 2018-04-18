@@ -1,7 +1,7 @@
 package com.oputyk.librick;
 
-        import org.springframework.boot.SpringApplication;
-        import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * Created by kamil on 02/02/2018.

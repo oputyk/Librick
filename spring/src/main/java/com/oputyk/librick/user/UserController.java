@@ -25,7 +25,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @PostMapping("register-librarian")
+    @PostMapping("new-librarian")
     public boolean registerLibrarian(@RequestBody CredentialsUserDto credentialsUserDto) {
         return userService.registerLibrarian(credentialsUserDto);
     }

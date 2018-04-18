@@ -22,7 +22,7 @@ public class UserSecureController {
         return userService.findCurrentUserDto();
     }
 
-    @PostMapping("change-password")
+    @PostMapping("password")
     public boolean changePassword(@RequestBody ChangePasswordUserDto changePasswordUserDto) {
         return userService.changePassword(changePasswordUserDto);
     }

@@ -13,10 +13,10 @@ export class UserApiService {
   }
 
   registerLibrarian(userCredentials: UserCredentials): Observable<boolean> {
-    return this.http.post<boolean>('/api/user/register-librarian', userCredentials);
+    return this.http.post<boolean>('/api/user/new-librarian', userCredentials);
   }
 
   changePassword(oldPassword: string, newPassword: string): Observable<boolean> {
-    return this.http.post<boolean>("/api/user/secure/change-password", {oldPassword: oldPassword, newPassword: newPassword});
+    return this.http.post<boolean>("/api/user/secure/password", {oldPassword: oldPassword, newPassword: newPassword});
   }
 }
