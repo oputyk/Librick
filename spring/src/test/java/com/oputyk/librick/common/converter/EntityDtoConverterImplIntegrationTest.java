@@ -11,6 +11,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -30,7 +31,7 @@ public class EntityDtoConverterImplIntegrationTest {
     private BookDto bookDto;
     private BookEntity oldBookEntity;
 
-    private Date now = new Date();
+    private LocalDate now = LocalDate.now();
     private Long bookId = 1L;
     private String bookName = "Book name";
     private String bookDescription = "Book description.";

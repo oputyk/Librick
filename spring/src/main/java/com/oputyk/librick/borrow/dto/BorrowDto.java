@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -15,6 +16,6 @@ import java.util.Date;
 @Data
 public class BorrowDto {
     private Long id;
-    private Date date;
-    private Date deadline;
+    private LocalDate date;
+    private LocalDate deadline;
 }

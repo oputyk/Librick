@@ -6,6 +6,7 @@ import com.oputyk.librick.borrow.dto.BorrowDto;
 import lombok.*;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -26,7 +27,7 @@ public class BookInstanceEntity {
     @ManyToOne
     @JoinColumn(name = "book_id")
     private BookEntity bookEntity;
-    private Date buyDate;
+    private LocalDate buyDate;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "borrow_id")

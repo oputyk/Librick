@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -19,5 +20,5 @@ public class BookDto {
     private Long id;
     private String name;
     private String description;
-    private Date releaseDate;
+    private LocalDate releaseDate;
 }

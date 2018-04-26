@@ -18,6 +18,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -55,6 +56,8 @@ public class BookConverterImplTest {
     private List<AuthorDto> authorDtos;
     private List<AuthorEntity> oldAuthorEntities;
 
+    LocalDate now;
+
     @TestConfiguration
     static public class BookConverterImplTestConfig {
         @Bean
@@ -65,16 +68,16 @@ public class BookConverterImplTest {
 
     @Before
     public void setUp() throws Exception {
-        Date now = new Date();
+        initNow();
 
         initAuthorEntities();
         initAuthorDtos();
         initOldAuthorEntities();
 
-        initBookEntity(now);
-        initFullBookDto(now);
+        initBookEntity();
+        initFullBookDto();
         initOldBookEntity();
-        initHalfConverterBookEntity(now);
+        initHalfConverterBookEntity();
     }
 
     @Test
@@ -103,23 +106,27 @@ public class BookConverterImplTest {
                 .isEqualToComparingFieldByFieldRecursively(bookEntity);
     }
 
+    private void initNow() {
+        now = LocalDate.now();
+    }
+
     private void initAuthorDtos() {
         authorDtos = new ArrayList<>(Arrays.asList(
-                new AuthorDto(1L, "firstName", "lastName", 1),
-                new AuthorDto(2L, "firstName2", "lastName2", 2)
+                new AuthorDto(1L, "firstName", "lastName", LocalDate.now().minusYears(40)),
+                new AuthorDto(2L, "firstName2", "lastName2", LocalDate.now().minusYears(20))
         ));
     }
 
     private void initOldAuthorEntities() {
         oldAuthorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(3L, "firstName3", "lastName3", 3, new ArrayList<>(Arrays.asList(oldBookEntity)))));
+                new AuthorEntity(3L, "firstName3", "lastName3", LocalDate.now().minusYears(30), new ArrayList<>(Arrays.asList(oldBookEntity)))));
     }
 
-    private void initBookEntity(Date now) {
+    private void initBookEntity() {
         bookEntity = new BookEntity(1L, "name", authorEntities, "description", now, null);
     }
 
-    private void initFullBookDto(Date now) {
+    private void initFullBookDto() {
         fullBookDto = new FullBookDto(1L, "name", authorDtos, "description", now, null);
     }
 
@@ -127,14 +134,14 @@ public class BookConverterImplTest {
         oldBookEntity = new BookEntity(2L, "name2", oldAuthorEntities, "description2", null, null);
     }
 
-    private void initHalfConverterBookEntity(Date now) {
+    private void initHalfConverterBookEntity() {
         halfConvertedBookEntity = new BookEntity(1L, "name", oldAuthorEntities, "description", now, null);
     }
 
     private void initAuthorEntities() {
         authorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(1L, "firstName", "lastName", 1, new ArrayList<>(Arrays.asList(bookEntity))),
-                new AuthorEntity(2L, "firstName2", "lastName2", 2, new ArrayList<>(Arrays.asList(bookEntity)))));
+                new AuthorEntity(1L, "firstName", "lastName", LocalDate.now().minusYears(40), new ArrayList<>(Arrays.asList(bookEntity))),
+                new AuthorEntity(2L, "firstName2", "lastName2", LocalDate.now().minusYears(20), new ArrayList<>(Arrays.asList(bookEntity)))));
     }
 
 }

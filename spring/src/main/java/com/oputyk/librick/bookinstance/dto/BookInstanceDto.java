@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
+
 /**
  * Created by kamil on 04/02/2018.
  */
@@ -14,4 +16,5 @@ import lombok.NoArgsConstructor;
 @Data
 public class BookInstanceDto {
     private Long isbn;
+    private LocalDate buyDate;
 }

@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Reader;
+import java.time.LocalDate;
 import java.util.Date;
 
 /**
@@ -27,8 +28,8 @@ public class BorrowEntity {
     @OneToOne
     @JoinColumn(name = "book_instance_id")
     private BookInstanceEntity bookInstanceEntity;
-    private Date date;
-    private Date deadline;
+    private LocalDate date;
+    private LocalDate deadline;
 
     @ManyToOne
     @JoinColumn(name = "reader_id")

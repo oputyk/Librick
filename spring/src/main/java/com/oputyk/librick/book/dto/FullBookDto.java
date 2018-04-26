@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +29,6 @@ public class FullBookDto {
     private String name;
     private List<AuthorDto> authorDtos = new ArrayList<>();
     private String description;
-    private Date releaseDate;
+    private LocalDate releaseDate;
     private List<BookInstanceDto> bookInstanceDtos = new ArrayList<>();
 }

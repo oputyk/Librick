@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
@@ -23,7 +24,7 @@ public class BookEntityTest {
     private BookEntity bookEntity;
     private List<AuthorEntity> authorEntities;
     private List<AuthorEntity> oldAuthorEntities;
-    private Date now;
+    private LocalDate now;
 
     @Before
     public void setUp() throws Exception {
@@ -51,19 +52,19 @@ public class BookEntityTest {
     }
 
     private void initDate() {
-        now = new Date();
+        now = LocalDate.now();
     }
 
     private void initAuthorEntities() {
         authorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(1L, "firstName", "lastName", 1, new ArrayList<>(Arrays.asList(bookEntity))),
-                new AuthorEntity(2L, "firstName2", "lastName2", 2, new ArrayList<>())
+                new AuthorEntity(1L, "firstName", "lastName", LocalDate.now().minusYears(40), new ArrayList<>(Arrays.asList(bookEntity))),
+                new AuthorEntity(2L, "firstName2", "lastName2", LocalDate.now().minusYears(30), new ArrayList<>())
         ));
     }
 
     private void initOldAuthorEntities() {
         oldAuthorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(3L, "firstName3", "lastName3", 3, new ArrayList<>(Arrays.asList(bookEntity)))
+                new AuthorEntity(3L, "firstName3", "lastName3", LocalDate.now().minusYears(23), new ArrayList<>(Arrays.asList(bookEntity)))
         ));
     }
 

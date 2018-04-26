@@ -4,7 +4,7 @@ import com.oputyk.librick.book.domain.BookEntity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.awt.print.Book;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -24,7 +24,7 @@ public class AuthorEntity {
     private Long id;
     private String firstName;
     private String lastName;
-    private Integer age;
+    private LocalDate birthday;
 
     @ManyToMany(cascade = {
                     CascadeType.PERSIST,
