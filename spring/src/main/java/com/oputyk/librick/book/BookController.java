@@ -23,6 +23,4 @@ public class BookController {
     public List<BookDto> all() {
         return bookService.findAllBookDtos();
     }
-
-
 }

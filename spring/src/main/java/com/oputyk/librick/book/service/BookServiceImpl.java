@@ -40,4 +40,11 @@ public class BookServiceImpl implements BookService {
                 .map(bookConverter::toFullBookDto)
                 .collect(Collectors.toList());
     }
+
+    @Override
+    public FullBookDto updateBook(FullBookDto fullBookDto) {
+        bookConverter.toBookEntity(fullBookDto);
+
+        return fullBookDto;
+    }
 }
