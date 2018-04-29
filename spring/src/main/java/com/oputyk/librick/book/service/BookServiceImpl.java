@@ -39,7 +39,7 @@ public class BookServiceImpl implements BookService {
         return bookEntities.stream()
                 .map(bookConverter::toFullBookDto)
                 .collect(Collectors.toList());
-    }
+        }
 
     @Override
     public FullBookDto updateBook(FullBookDto fullBookDto) {

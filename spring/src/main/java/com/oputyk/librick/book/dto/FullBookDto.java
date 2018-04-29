@@ -27,8 +27,8 @@ import java.util.List;
 public class FullBookDto {
     private Long id;
     private String name;
-    private List<AuthorDto> authorDtos = new ArrayList<>();
+    private List<AuthorDto> authors = new ArrayList<>();
     private String description;
     private LocalDate releaseDate;
-    private List<BookInstanceDto> bookInstanceDtos = new ArrayList<>();
+    private List<BookInstanceDto> bookInstances = new ArrayList<>();
 }

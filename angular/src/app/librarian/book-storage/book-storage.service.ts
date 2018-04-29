@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {Book} from "../../shared/models/book.model";
 import {BookApiService} from "../../core/services/api/book-api/book-api.service";
+import {DataSource} from "@angular/cdk/collections";
+import {User} from "../../shared/models/user.model";
+import {BookDataSource} from "./book-data-source.service";
 
 @Injectable()
 export class BookStorageService {
 
-  constructor(private bookApiService: BookApiService) { }
+  constructor(private bookApiService: BookApiService,
+              private bookDataSource: BookDataSource) { }
 
-  getBooks(): Observable<Book[]> {
-    return this.bookApiService.getBooks();
+  getBookDataSource(): BookDataSource {
+    return this.bookDataSource;
   }
 
 }

@@ -7,6 +7,9 @@ import {MaterialModule} from "../core/material.module";
 import {FlexLayoutModule} from "@angular/flex-layout";
 import { BookStorageComponent } from './book-storage/book-storage.component';
 import {ApiModule} from "../core/services/api/api.module";
+import {BookDataSource} from "./book-storage/book-data-source.service";
+import { AddBookComponent } from './book-storage/add-book/add-book.component';
+import { AddBookDialogComponent } from './book-storage/add-book-dialog/add-book-dialog.component';
 
 @NgModule({
   imports: [
@@ -19,7 +22,12 @@ import {ApiModule} from "../core/services/api/api.module";
   ],
   declarations: [
     DashboardComponent,
-    BookStorageComponent
+    BookStorageComponent,
+    AddBookComponent,
+    AddBookDialogComponent
+  ],
+  providers: [
+    BookDataSource
   ]
 })
 export class LibrarianModule { }

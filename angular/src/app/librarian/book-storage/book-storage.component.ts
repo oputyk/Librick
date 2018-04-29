@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatPaginator, MatTableDataSource} from '@angular/material';
 import {Observable} from "rxjs/Observable";
 import {Book} from "../../shared/models/book.model";
 import {BookStorageService} from "./book-storage.service";
+import {BookDataSource} from "./book-data-source.service";
 
 @Component({
   selector: 'app-book-storage',
@@ -11,12 +13,17 @@ import {BookStorageService} from "./book-storage.service";
 })
 export class BookStorageComponent implements OnInit {
 
-  books$: Observable<Book[]>;
+  bookDataSource: BookDataSource;
+  displayedColumns = ['id', 'name', 'releaseDate', 'authors', 'description'];
 
   constructor(private service: BookStorageService) { }
 
   ngOnInit() {
-    this.books$ = this.service.getBooks();
+    this.bookDataSource = this.service.getBookDataSource();
+  }
+
+  addBook() {
+
   }
 
 }

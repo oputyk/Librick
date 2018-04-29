@@ -58,18 +58,18 @@ public class BookConverterImpl implements BookConverter {
 
         BookEntity newBookEntity = (BookEntity) converter.toEntity(oldBookEntity, fullBookDto);
 
-        if(fullBookDto.getAuthorDtos() != null) {
+        if(fullBookDto.getAuthors() != null) {
             List<AuthorEntity> newAuthorEntities;
-            newAuthorEntities = fullBookDto.getAuthorDtos().stream()
+            newAuthorEntities = fullBookDto.getAuthors().stream()
                     .map(authorDto -> authorConverter.toAuthorEntity(authorDto))
                     .collect(Collectors.toList());
             newBookEntity.updateAuthorEntities(newAuthorEntities);
         }
 
 
-        if(fullBookDto.getBookInstanceDtos() != null) {
+        if(fullBookDto.getBookInstances() != null) {
             List<BookInstanceEntity> newBookInstanceEntities;
-            newBookInstanceEntities = fullBookDto.getBookInstanceDtos().stream()
+            newBookInstanceEntities = fullBookDto.getBookInstances().stream()
                     .map(bookInstanceDto -> bookInstanceConverter.toBookInstanceEntity(bookInstanceDto))
                     .collect(Collectors.toList());
             newBookEntity.updateBookInstanceEntities(newBookInstanceEntities);

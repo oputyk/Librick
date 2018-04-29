@@ -24,8 +24,8 @@ public class BookSecureController {
     }
 
     @PreAuthorize("hasRole('ROLE_LIBRARIAN')")
-    @PostMapping("book/{id}")
-    public FullBookDto updateBook(@PathVariable Long id, @RequestBody FullBookDto fullBookDto) {
+    @PostMapping("book/")
+    public FullBookDto updateOrSaveBook(@RequestBody FullBookDto fullBookDto) {
         return bookService.updateBook(fullBookDto);
     }
 }

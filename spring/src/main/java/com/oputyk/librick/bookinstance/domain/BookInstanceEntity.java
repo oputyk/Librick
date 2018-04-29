@@ -2,12 +2,10 @@ package com.oputyk.librick.bookinstance.domain;
 
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.borrow.domain.BorrowEntity;
-import com.oputyk.librick.borrow.dto.BorrowDto;
 import lombok.*;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Date;
 
 /**
  * Created by kamil on 03/02/2018.
@@ -37,7 +35,7 @@ public class BookInstanceEntity {
     public void updateBookEntity(BookEntity newBookEntity) {
         bookEntity.removeBookInstanceEntity(this);
         bookEntity = newBookEntity;
-        if (newBookEntity != null && !newBookEntity.getBookInstanceEntities().contains(this)) {
+        if (newBookEntity != null && !newBookEntity.getBookInstances().contains(this)) {
             newBookEntity.addBookInstanceEntity(this);
         }
     }

@@ -4,3 +4,20 @@
   flex-grow: 1;
   display: flex;
 }
+
+.mat-table-container {
+  width: 100%;
+  max-width: 1000px;
+}
+
+.description {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.add-book {
+  margin-top: 0.5em;
+  color: $primary;
+  float: right;
+}

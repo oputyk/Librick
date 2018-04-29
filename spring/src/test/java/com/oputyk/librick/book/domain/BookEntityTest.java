@@ -9,7 +9,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -38,17 +37,17 @@ public class BookEntityTest {
     public void testUpdateAuthorEntities() throws Exception {
         bookEntity.updateAuthorEntities(authorEntities);
 
-        assertThat(bookEntity.getAuthorEntities()).isEqualTo(authorEntities);
+        assertThat(bookEntity.getAuthors()).isEqualTo(authorEntities);
     }
 
     @Test
     public void testAddAuthorEntity() {
-        bookEntity.setAuthorEntities(new ArrayList<>());
+        bookEntity.setAuthors(new ArrayList<>());
 
         bookEntity.addAuthorEntity(authorEntities.get(0));
         bookEntity.addAuthorEntity(authorEntities.get(1));
 
-        assertThat(bookEntity.getAuthorEntities()).isEqualTo(authorEntities);
+        assertThat(bookEntity.getAuthors()).isEqualTo(authorEntities);
     }
 
     private void initDate() {

@@ -21,7 +21,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -97,10 +96,10 @@ public class BookConverterImplTest {
         Mockito.when(entityDtoConverter.toEntity(oldBookEntity, fullBookDto))
                 .thenReturn(halfConvertedBookEntity);
 
-        Mockito.when(authorConverter.toAuthorEntity(fullBookDto.getAuthorDtos().get(0)))
-                .thenReturn(bookEntity.getAuthorEntities().get(0));
-        Mockito.when(authorConverter.toAuthorEntity(fullBookDto.getAuthorDtos().get(1)))
-                .thenReturn(bookEntity.getAuthorEntities().get(1));
+        Mockito.when(authorConverter.toAuthorEntity(fullBookDto.getAuthors().get(0)))
+                .thenReturn(bookEntity.getAuthors().get(0));
+        Mockito.when(authorConverter.toAuthorEntity(fullBookDto.getAuthors().get(1)))
+                .thenReturn(bookEntity.getAuthors().get(1));
 
         assertThat(bookConverter.toBookEntity(fullBookDto))
                 .isEqualToComparingFieldByFieldRecursively(bookEntity);

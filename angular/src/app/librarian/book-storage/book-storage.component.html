@@ -1,5 +1,44 @@
-<div fxFlex fxLayout="column">
-  <mat-table [dataSource]="books$">
+<div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxFlex class="mat-table-container">
+    <mat-table class="mat-table" [dataSource]="bookDataSource">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+      </ng-container>
 
-  </mat-table>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="releaseDate">
+        <mat-header-cell *matHeaderCellDef> Release Date </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.releaseDate}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="authors">
+        <mat-header-cell *matHeaderCellDef> Authors </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <span *ngFor="let author of element.authors; let last = last">
+            {{author.firstName + " " + author.lastName}}<span *ngIf="!last">,</span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+        <mat-cell class="description" [matTooltip]="element.description" *matCellDef="let element">
+          {{ element.description }}
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+        <span></span>
+      </mat-row>
+    </mat-table>
+
+    <button mat-raised-button class="add-book" (click)="addBook()">Add book</button>
+  </div>
+
 </div>

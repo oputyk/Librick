@@ -32,8 +32,8 @@ public class AuthorEntity {
                     CascadeType.REFRESH,
                     CascadeType.MERGE })
     @JoinTable(name = "author_book",
-            joinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"))
+            joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
     private List<BookEntity> bookEntities = new ArrayList<>();
 
     // AuthorEntity (many) - BookEntity (many) //
@@ -56,14 +56,14 @@ public class AuthorEntity {
 
     public void addBookEntity(BookEntity bookEntity) {
         bookEntities.add(bookEntity);
-        if (!bookEntity.getAuthorEntities().contains(this)) {
+        if (!bookEntity.getAuthors().contains(this)) {
             bookEntity.addAuthorEntity(this);
         }
     }
 
     public void removeBookEntity(BookEntity bookEntity) {
         bookEntities.remove(bookEntity);
-        if (bookEntity.getAuthorEntities().contains(this)) {
+        if (bookEntity.getAuthors().contains(this)) {
             bookEntity.removeAuthorEntity(this);
         }
     }
