@@ -42,7 +42,7 @@ public class BookServiceImpl implements BookService {
         }
 
     @Override
-    public FullBookDto updateBook(FullBookDto fullBookDto) {
+    public FullBookDto updateOrSaveBook(FullBookDto fullBookDto) {
         bookConverter.toBookEntity(fullBookDto);
 
         return fullBookDto;

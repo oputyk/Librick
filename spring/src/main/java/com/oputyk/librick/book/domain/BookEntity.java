@@ -1,5 +1,10 @@
 package com.oputyk.librick.book.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
+import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.bookinstance.domain.BookInstanceEntity;
 import lombok.*;
@@ -30,6 +35,8 @@ public class BookEntity {
     @ManyToMany(mappedBy = "bookEntities")
     private List<AuthorEntity> authors = new ArrayList<>();
     private String description;
+
+    @JsonFormat(pattern = "dd::MM::yyyy")
     private LocalDate releaseDate;
 
     @OneToMany(mappedBy = "bookEntity")

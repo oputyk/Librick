@@ -8,8 +8,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { BookStorageComponent } from './book-storage/book-storage.component';
 import {ApiModule} from "../core/services/api/api.module";
 import {BookDataSource} from "./book-storage/book-data-source.service";
-import { AddBookComponent } from './book-storage/add-book/add-book.component';
 import { AddBookDialogComponent } from './book-storage/add-book-dialog/add-book-dialog.component';
+import {FormsModule} from "@angular/forms";
+import {ChangePasswordDialogComponent} from "../user/change-password-dialog/change-password-dialog.component";
 
 @NgModule({
   imports: [
@@ -18,12 +19,15 @@ import { AddBookDialogComponent } from './book-storage/add-book-dialog/add-book-
     SharedModule,
     MaterialModule,
     FlexLayoutModule,
-    ApiModule
+    ApiModule,
+    FormsModule
   ],
   declarations: [
     DashboardComponent,
     BookStorageComponent,
-    AddBookComponent,
+    AddBookDialogComponent
+  ],
+  entryComponents: [
     AddBookDialogComponent
   ],
   providers: [

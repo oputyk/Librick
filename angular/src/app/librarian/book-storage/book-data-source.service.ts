@@ -12,5 +12,6 @@ export class BookDataSource extends DataSource<Book> {
   connect(): Observable<Book[]> {
     return this.bookApiService.getBooks();
   }
+
   disconnect() {}
 }

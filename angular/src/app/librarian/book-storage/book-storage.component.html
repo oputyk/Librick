@@ -13,7 +13,7 @@
 
       <ng-container matColumnDef="releaseDate">
         <mat-header-cell *matHeaderCellDef> Release Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.releaseDate}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.releaseDate | date: 'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="authors">
@@ -38,7 +38,7 @@
       </mat-row>
     </mat-table>
 
-    <button mat-raised-button class="add-book" (click)="addBook()">Add book</button>
+    <button mat-raised-button class="add-book" (click)="showAddBookDialog()">Add book</button>
   </div>
 
 </div>

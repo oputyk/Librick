@@ -1,12 +1,9 @@
 package com.oputyk.librick.book;
 
-import com.oputyk.librick.book.dto.BookDto;
 import com.oputyk.librick.book.dto.FullBookDto;
 import com.oputyk.librick.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,10 @@ public class BookController {
     @GetMapping("all")
     public List<FullBookDto> all() {
         return bookService.findAllFullBookDtos();
+    }
+
+    @PostMapping("book")
+    public FullBookDto updateOrSaveBook(@RequestBody FullBookDto fullBookDto) {
+        return bookService.updateOrSaveBook(fullBookDto);
     }
 }

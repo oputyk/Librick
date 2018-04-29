@@ -43,6 +43,7 @@ public class BookConverterImpl implements BookConverter {
     @Override
     public BookEntity toBookEntity(BookDto bookDto) {
         BookEntity oldBookEntity = findEntityAndCreateIfDoesntExist(bookDto.getId());
+        bookDto.setId(oldBookEntity.getId());
 
         return (BookEntity) converter.toEntity(oldBookEntity, bookDto);
     }
@@ -55,6 +56,7 @@ public class BookConverterImpl implements BookConverter {
     @Override
     public BookEntity toBookEntity(FullBookDto fullBookDto) {
         BookEntity oldBookEntity = findEntityAndCreateIfDoesntExist(fullBookDto.getId());
+        fullBookDto.setId(oldBookEntity.getId());
 
         BookEntity newBookEntity = (BookEntity) converter.toEntity(oldBookEntity, fullBookDto);
 
@@ -79,6 +81,10 @@ public class BookConverterImpl implements BookConverter {
     }
 
     private BookEntity findEntityAndCreateIfDoesntExist(Long id) {
+        if(id == null) {
+            return bookRepository.save(new BookEntity());
+        }
+
         BookEntity bookEntity = bookRepository.findOne(id);
 
         if(bookEntity == null) {

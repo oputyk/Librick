@@ -15,7 +15,7 @@ export class BookApiService {
 
   addBook(book: Book): Observable<Book> {
     if(book.id == null) {
-      return this.http.post<Book>(`api/book/secure/book/`, book);
+      return this.addOrUpdateBook(book);
     } else {
       throw new Error("Id should be null to be created.");
     }
@@ -23,9 +23,14 @@ export class BookApiService {
 
   updateBook(book: Book): Observable<Book> {
     if(book.id != null) {
-      return this.http.post<Book>(`api/book/secure/book/`, book);
+      return this.addOrUpdateBook(book);
     } else {
       throw new Error("No id (id is null) in the book to be updated.");
     }
+  }
+
+  addOrUpdateBook(book: Book): Observable<Book> {
+    return this.http.post<Book>(`api/book/book`, book);
+
   }
 }

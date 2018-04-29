@@ -14,5 +14,5 @@ public interface BookService {
 
     List<FullBookDto> findAllFullBookDtos();
 
-    FullBookDto updateBook(FullBookDto fullBookDto);
+    FullBookDto updateOrSaveBook(FullBookDto fullBookDto);
 }

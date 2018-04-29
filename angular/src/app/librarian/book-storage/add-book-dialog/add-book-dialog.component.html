@@ -1,3 +1,31 @@
-<p>
-  add-book-dialog works!
-</p>
+<div class="container" fxFlexAlign="center stretch" fxLayout="column">
+  <h3 mat-dialog-title class="title"> {{title}} </h3>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="book.name" type="text" placeholder="Book name" required/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="book.releaseDate" [matDatepicker]="picker" placeholder="Release date">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="book.authors" type="password" placeholder="Repeat new password"/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <textarea matInput [(ngModel)]="book.description" type="text" placeholder="Description"></textarea>
+  </mat-form-field>
+
+  <div class="button-group" fxLayout="row" fxLayoutGap="1.5em" fxLayoutAlign="space-between center">
+    <button fxFlex mat-raised-button [mat-dialog-close]>
+      Cancel
+    </button>
+
+    <button fxFlex mat-raised-button (click)="addOrUpdateBook()">
+      Save
+    </button>
+  </div>
+</div>

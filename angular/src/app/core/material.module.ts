@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import {
   MatButtonModule, MatCardModule, MatFormFieldModule, MatIconModule, MatMenuModule,
   MatToolbarModule, MatInputModule, MatDividerModule, MatSidenavModule, MatDialogModule, MatSnackBarModule,
-  MatTableModule, MatPaginatorModule, MatTooltipModule
+  MatTableModule, MatPaginatorModule, MatTooltipModule, MatDatepickerModule
 } from "@angular/material";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatMomentDateModule} from "@angular/material-moment-adapter";
 
 @NgModule({
   imports: [
@@ -21,7 +22,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ],
   exports: [
     MatButtonModule,
@@ -37,7 +40,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
     MatSnackBarModule,
     MatTableModule,
     MatPaginatorModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatDatepickerModule,
+    MatMomentDateModule
   ]
 })
 export class MaterialModule { }
