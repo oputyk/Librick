@@ -1,8 +1,10 @@
 package com.oputyk.librick.common.converter;
 
 import com.oputyk.librick.Application;
+import com.oputyk.librick.author.domain.AuthorEntity;
+import com.oputyk.librick.author.dto.AuthorDto;
 import com.oputyk.librick.book.domain.BookEntity;
-import com.oputyk.librick.book.dto.BookDto;
+import com.oputyk.librick.book.dto.FullBookDto;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -12,7 +14,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDate;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -28,7 +32,7 @@ public class EntityDtoConverterImplIntegrationTest {
     private EntityDtoConverter entityDtoConverter;
 
     private BookEntity bookEntity;
-    private BookDto bookDto;
+    private FullBookDto fullBookDto;
     private BookEntity oldBookEntity;
 
     private LocalDate now = LocalDate.now();
@@ -39,21 +43,22 @@ public class EntityDtoConverterImplIntegrationTest {
 
     @Before
     public void setUp() {
-        initBookDto();
+        initFullBookDto();
         initBookEntity();
         initOldBookEntity();
     }
 
     @Test
-    public void testBookDtoToEntity() {
+    public void testBookFullDtoToEntity() {
         BookEntity convertedEntity;
-        convertedEntity = (BookEntity) entityDtoConverter.toEntity(oldBookEntity, bookDto);
+        convertedEntity = (BookEntity) entityDtoConverter
+                .toEntity(oldBookEntity, fullBookDto);
 
-        assertThat(convertedEntity).isEqualToComparingFieldByField(bookEntity);
+        assertThat(convertedEntity).isEqualToComparingFieldByFieldRecursively(bookEntity);
     }
 
-    private void initBookDto() {
-        bookDto = BookDto.builder()
+    private void initFullBookDto() {
+        fullBookDto = FullBookDto.builder()
                 .id(bookId)
                 .name(bookName)
                 .releaseDate(now)

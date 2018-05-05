@@ -9,7 +9,7 @@ export class BookApiService {
 
   constructor(private http: HttpClient) { }
 
-  getBooks(): Observable<Book[]> {
+  getAllBooks(): Observable<Book[]> {
     return this.http.get<Book[]>(`api/book/all`);
   }
 

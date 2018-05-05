@@ -65,6 +65,7 @@ public class BookConverterImpl implements BookConverter {
             newAuthorEntities = fullBookDto.getAuthors().stream()
                     .map(authorDto -> authorConverter.toAuthorEntity(authorDto))
                     .collect(Collectors.toList());
+
             newBookEntity.updateAuthorEntities(newAuthorEntities);
         }
 

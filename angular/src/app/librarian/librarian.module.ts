@@ -11,6 +11,7 @@ import {BookDataSource} from "./book-storage/book-data-source.service";
 import { AddBookDialogComponent } from './book-storage/add-book-dialog/add-book-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {ChangePasswordDialogComponent} from "../user/change-password-dialog/change-password-dialog.component";
+import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/author-selector-dialog/author-selector-dialog.component';
 
 @NgModule({
   imports: [
@@ -25,10 +26,12 @@ import {ChangePasswordDialogComponent} from "../user/change-password-dialog/chan
   declarations: [
     DashboardComponent,
     BookStorageComponent,
-    AddBookDialogComponent
+    AddBookDialogComponent,
+    AuthorSelectorDialogComponent
   ],
   entryComponents: [
-    AddBookDialogComponent
+    AddBookDialogComponent,
+    AuthorSelectorDialogComponent
   ],
   providers: [
     BookDataSource

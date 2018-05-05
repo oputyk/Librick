@@ -1,0 +1,46 @@
+<div class="container" fxFlexAlign="center stretch" fxLayout="column">
+  <mat-table class="mat-table" [dataSource]="authorDataSource">
+    <ng-container matColumnDef="selection">
+      <mat-header-cell  *matHeaderCellDef></mat-header-cell>
+      <mat-cell class="mat-column-select" *matCellDef="let element">
+        <mat-checkbox (change)="authors.set(element, !authors.get(element))"
+                      [checked]="authors.get(element)">
+        </mat-checkbox>
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef>Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.firstName + " " + element.lastName}}
+      </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="birthday">
+      <mat-header-cell *matHeaderCellDef>Birthday</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        {{element.birthday | date: 'dd/MM/yyyy'}}
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;">
+      <span></span>
+    </mat-row>
+  </mat-table>
+
+  <div class="button-group" fxLayout="row" fxLayoutGap="1.5em" fxLayoutAlign="space-between center">
+    <button fxFlex mat-raised-button [mat-dialog-close]>
+      Cancel
+    </button>
+
+    <button fxFlex mat-raised-button (click)="returnAuthors()">
+      Save
+    </button>
+  </div>
+</div>

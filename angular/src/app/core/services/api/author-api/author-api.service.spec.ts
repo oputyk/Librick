@@ -1,6 +1,6 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { AuthorApiService } from './book-api.service';
+import { AuthorApiService } from './author-api.service';
 
 describe('AuthorApiService', () => {
   beforeEach(() => {

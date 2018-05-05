@@ -9,8 +9,7 @@ import {BookDataSource} from "./book-data-source.service";
 @Injectable()
 export class BookStorageService {
 
-  constructor(private bookApiService: BookApiService,
-              private bookDataSource: BookDataSource) { }
+  constructor(private bookDataSource: BookDataSource) { }
 
   getBookDataSource(): BookDataSource {
     return this.bookDataSource;

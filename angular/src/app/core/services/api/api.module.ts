@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import {UserApiService} from "./user-api/user-api.service";
 import {HttpClientModule} from "@angular/common/http";
 import {BookApiService} from "./book-api/book-api.service";
+import {AuthorApiService} from "./author-api/author-api.service";
 
 @NgModule({
   imports: [
@@ -11,7 +12,8 @@ import {BookApiService} from "./book-api/book-api.service";
   ],
   providers:[
     UserApiService,
-    BookApiService
+    BookApiService,
+    AuthorApiService
   ],
   exports: [
     HttpClientModule

@@ -11,9 +11,12 @@
     <mat-datepicker #picker></mat-datepicker>
   </mat-form-field>
 
-  <mat-form-field>
-    <input matInput [(ngModel)]="book.authors" type="password" placeholder="Repeat new password"/>
-  </mat-form-field>
+  <button mat-raised-button class="showAuthorSelectorDialog" (click)="showAuthorSelectorDialog()">
+    Authors:
+    <span *ngFor="let author of book.authors; let last = last">
+            {{author.firstName + " " + author.lastName}}<span *ngIf="!last">,</span>
+    </span>
+  </button>
 
   <mat-form-field>
     <textarea matInput [(ngModel)]="book.description" type="text" placeholder="Description"></textarea>

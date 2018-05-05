@@ -1,5 +1,6 @@
 package com.oputyk.librick.author.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.oputyk.librick.book.domain.BookEntity;
 import lombok.*;
 
@@ -12,6 +13,8 @@ import java.util.stream.Collectors;
 /**
  * Created by kamil on 03/02/2018.
  */
+
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -24,6 +27,8 @@ public class AuthorEntity {
     private Long id;
     private String firstName;
     private String lastName;
+
+    @JsonFormat(pattern = "dd::MM::yyyy")
     private LocalDate birthday;
 
     @ManyToMany(cascade = {

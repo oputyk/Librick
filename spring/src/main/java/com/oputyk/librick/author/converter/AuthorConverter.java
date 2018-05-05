@@ -10,5 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface AuthorConverter {
+    AuthorDto toAuthorDto(AuthorEntity authorEntity);
+
     AuthorEntity toAuthorEntity(AuthorDto authorDto);
 }

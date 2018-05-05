@@ -1,10 +1,6 @@
 package com.oputyk.librick.book.domain;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.databind.annotation.JsonSerialize;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
 import com.oputyk.librick.author.domain.AuthorEntity;
 import com.oputyk.librick.bookinstance.domain.BookInstanceEntity;
 import lombok.*;
@@ -40,7 +36,7 @@ public class BookEntity {
     private LocalDate releaseDate;
 
     @OneToMany(mappedBy = "bookEntity")
-    private List<BookInstanceEntity> bookInstances = new ArrayList<>();
+    private List<BookInstanceEntity> bookInstanceEntities = new ArrayList<>();
 
     // BookEntity (many) - AuthorEntity (many) //
     public void updateAuthorEntities(List<AuthorEntity> newAuthorEntities) {
@@ -78,30 +74,30 @@ public class BookEntity {
     // BookEntity (one) - BookInstanceEntity (many) //
     public void updateBookInstanceEntities(List<BookInstanceEntity> newBookInstanceEntities) {
         if (newBookInstanceEntities != null) {
-            List<BookInstanceEntity> toRemove = bookInstances.stream()
+            List<BookInstanceEntity> toRemove = bookInstanceEntities.stream()
                     .filter(bookInstanceEntity -> !newBookInstanceEntities.contains(bookInstanceEntity))
                     .collect(Collectors.toList());
 
             List<BookInstanceEntity> toAdd = newBookInstanceEntities.stream()
-                    .filter(bookInstanceEntity -> !bookInstances.contains(bookInstanceEntity))
+                    .filter(bookInstanceEntity -> !bookInstanceEntities.contains(bookInstanceEntity))
                     .collect(Collectors.toList());
 
             toRemove.forEach(this::removeBookInstanceEntity);
             toAdd.forEach(this::addBookInstanceEntity);
         } else {
-            bookInstances.clear();
+            bookInstanceEntities.clear();
         }
     }
 
     public void addBookInstanceEntity(BookInstanceEntity bookInstanceEntity) {
-        bookInstances.add(bookInstanceEntity);
+        bookInstanceEntities.add(bookInstanceEntity);
         if (bookInstanceEntity.getBookEntity() != this) {
             bookInstanceEntity.updateBookEntity(this);
         }
     }
 
     public void removeBookInstanceEntity(BookInstanceEntity bookInstanceEntity) {
-        bookInstances.remove(bookInstanceEntity);
+        bookInstanceEntities.remove(bookInstanceEntity);
         if (bookInstanceEntity.getBookEntity() == this) {
             bookInstanceEntity.updateBookEntity(null);
         }

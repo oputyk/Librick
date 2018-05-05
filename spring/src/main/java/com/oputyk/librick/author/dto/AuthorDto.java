@@ -3,6 +3,7 @@ package com.oputyk.librick.author.dto;
 import com.oputyk.librick.book.domain.BookEntity;
 import com.oputyk.librick.book.dto.BookDto;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -14,6 +15,7 @@ import java.util.List;
  * Created by kamil on 03/02/2018.
  */
 
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data

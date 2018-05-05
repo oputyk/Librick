@@ -1,0 +1,22 @@
+:host {
+  flex-grow: 1;
+  display: flex;
+}
+
+.container {
+  padding: 0 1em;
+  min-width: 400px;
+  width: 100%;
+}
+
+.mat-table {
+  width: 100%;
+}
+
+.mat-column-select {
+  overflow: visible;
+}
+
+.button-group {
+  margin-top: 0.8em;
+}

@@ -35,7 +35,7 @@ public class BookInstanceEntity {
     public void updateBookEntity(BookEntity newBookEntity) {
         bookEntity.removeBookInstanceEntity(this);
         bookEntity = newBookEntity;
-        if (newBookEntity != null && !newBookEntity.getBookInstances().contains(this)) {
+        if (newBookEntity != null && !newBookEntity.getBookInstanceEntities().contains(this)) {
             newBookEntity.addBookInstanceEntity(this);
         }
     }

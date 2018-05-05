@@ -19,14 +19,15 @@ export class BookStorageComponent implements OnInit {
   bookDataSource: BookDataSource;
   displayedColumns = ['id', 'name', 'releaseDate', 'authors', 'description'];
 
-  constructor(private service: BookStorageService, public dialog: MatDialog) { }
+  constructor(private service: BookStorageService,
+              public addBookDialog: MatDialog) { }
 
   ngOnInit() {
-    this.reloadBookData();
+    this.bookDataSource = this.service.getBookDataSource();
   }
 
   showAddBookDialog() {
-    const dialogRef = this.dialog.open(AddBookDialogComponent);
+    const dialogRef = this.addBookDialog.open(AddBookDialogComponent);
 
     dialogRef.afterClosed().subscribe((book: Book) => {
       if(!isNullOrUndefined(book)) {
@@ -36,6 +37,6 @@ export class BookStorageComponent implements OnInit {
   }
 
   private reloadBookData() {
-    this.bookDataSource = this.service.getBookDataSource();
+    this.bookDataSource.reload();
   }
 }
