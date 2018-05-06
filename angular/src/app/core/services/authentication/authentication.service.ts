@@ -1,16 +1,14 @@
 import {Injectable} from "@angular/core";
 import {HttpClient, HttpResponse} from "@angular/common/http";
-import {User} from "@app/shared/models/user.model";
 import { Observable } from 'rxjs/Rx'
-import {environment} from "@env/environment";
 import "rxjs/add/operator/do";
 import "rxjs/add/operator/catch";
 import 'rxjs/add/operator/map';
 import {isNullOrUndefined} from "util";
-import {ErrorObservable} from "rxjs/observable/ErrorObservable";
 import {Subject} from "rxjs/Subject";
 import {UserApiService} from "../api/user-api/user-api.service";
 import {BehaviorSubject} from "rxjs/BehaviorSubject";
+import {User} from "../../../shared/models/user.model";
 
 @Injectable()
 export class AuthenticationService {

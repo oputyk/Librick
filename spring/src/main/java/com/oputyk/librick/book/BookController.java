@@ -21,9 +21,4 @@ public class BookController {
     public List<FullBookDto> all() {
         return bookService.findAllFullBookDtos();
     }
-
-    @PostMapping("book")
-    public FullBookDto updateOrSaveBook(@RequestBody FullBookDto fullBookDto) {
-        return bookService.updateOrSaveBook(fullBookDto);
-    }
 }

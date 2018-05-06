@@ -30,7 +30,6 @@ export class BookApiService {
   }
 
   addOrUpdateBook(book: Book): Observable<Book> {
-    return this.http.post<Book>(`api/book/book`, book);
-
+    return this.http.post<Book>(`/api/book/secure/book`, book);
   }
 }

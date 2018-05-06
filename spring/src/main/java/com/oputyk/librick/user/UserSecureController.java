@@ -14,8 +14,12 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("user/secure")
 public class UserSecureController {
+    private final UserService userService;
+
     @Autowired
-    private UserService userService;
+    public UserSecureController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("current")
     public UserDto getUser() {

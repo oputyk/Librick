@@ -3,6 +3,7 @@ package com.oputyk.librick.book;
 import com.oputyk.librick.book.dto.FullBookDto;
 import com.oputyk.librick.book.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 /**

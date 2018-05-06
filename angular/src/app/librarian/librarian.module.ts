@@ -20,7 +20,6 @@ import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/au
     SharedModule,
     MaterialModule,
     FlexLayoutModule,
-    ApiModule,
     FormsModule
   ],
   declarations: [
