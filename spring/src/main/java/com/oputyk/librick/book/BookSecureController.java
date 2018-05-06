@@ -2,6 +2,7 @@ package com.oputyk.librick.book;
 
 import com.oputyk.librick.book.dto.FullBookDto;
 import com.oputyk.librick.book.service.BookService;
+import com.oputyk.librick.security.service.authenticationfacade.AuthenticationFacade;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ public class BookSecureController {
         this.bookService = bookService;
     }
 
+    @PreAuthorize("hasRole('ROLE_LIBRARIAN')")
     @PostMapping("book")
     public FullBookDto updateOrSaveBook(@RequestBody FullBookDto fullBookDto) {
         return bookService.updateOrSaveBook(fullBookDto);
