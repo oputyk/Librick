@@ -18,7 +18,15 @@ public class SimpleCorrespondingFieldsFilter implements CorrespondingFieldsFilte
         boolean sameNames = entityField.getName().equals(dtoField.getName());
         boolean sameClasses = entityField.getClass().equals(dtoField.getClass());
 
-        if(sameClasses && entityField.getGenericType() instanceof ParameterizedType
+        if(sameClasses) {
+            sameClasses = areSameGenerics(entityField, dtoField);
+        }
+
+        return sameNames && sameClasses;
+    }
+
+    private boolean areSameGenerics(Field entityField, Field dtoField) {
+        if(entityField.getGenericType() instanceof ParameterizedType
                 && dtoField.getGenericType() instanceof ParameterizedType) {
             ParameterizedType entityParameterizedType = (ParameterizedType)
                     entityField.getGenericType();
@@ -30,8 +38,7 @@ public class SimpleCorrespondingFieldsFilter implements CorrespondingFieldsFilte
                 return false;
             }
         }
-
-        return sameNames && sameClasses;
+        return true;
     }
 
     private boolean areParameterTypesDifferent(ParameterizedType entityParameterizedType, ParameterizedType dtoParameterizedType) {
