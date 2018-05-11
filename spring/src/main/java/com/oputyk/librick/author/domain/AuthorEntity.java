@@ -67,14 +67,14 @@ public class AuthorEntity {
 
     public void addBookEntity(BookEntity bookEntity) {
         bookEntities.add(bookEntity);
-        if (!bookEntity.getAuthors().contains(this)) {
+        if (!bookEntity.getAuthorEntities().contains(this)) {
             bookEntity.addAuthorEntity(this);
         }
     }
 
     public void removeBookEntity(BookEntity bookEntity) {
         bookEntities.remove(bookEntity);
-        if (bookEntity.getAuthors().contains(this)) {
+        if (bookEntity.getAuthorEntities().contains(this)) {
             bookEntity.removeAuthorEntity(this);
         }
     }
