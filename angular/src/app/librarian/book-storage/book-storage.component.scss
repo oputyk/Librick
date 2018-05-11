@@ -7,7 +7,7 @@
 
 .mat-table-container {
   width: 100%;
-  max-width: 1000px;
+  max-width: 1200px;
 }
 
 .description {
@@ -20,4 +20,12 @@
   margin-top: 0.5em;
   color: $primary;
   float: right;
+}
+
+.edit-book {
+  color: $warn;
+}
+
+.delete-book {
+  color: red;
 }

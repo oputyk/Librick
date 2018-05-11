@@ -3,23 +3,23 @@
     <mat-table class="mat-table" [dataSource]="bookDataSource">
       <ng-container matColumnDef="id">
         <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.id}} </mat-cell>
+        <mat-cell *matCellDef="let book"> {{book.id}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+        <mat-cell *matCellDef="let book"> {{book.name}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="releaseDate">
         <mat-header-cell *matHeaderCellDef> Release Date </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.releaseDate | date: 'dd/MM/yyyy'}} </mat-cell>
+        <mat-cell *matCellDef="let book"> {{book.releaseDate | date: 'dd/MM/yyyy'}} </mat-cell>
       </ng-container>
 
       <ng-container matColumnDef="authors">
         <mat-header-cell *matHeaderCellDef> Authors </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <span *ngFor="let author of element.authors; let last = last">
+        <mat-cell *matCellDef="let book">
+          <span *ngFor="let author of book.authors; let last = last">
             {{author.firstName + " " + author.lastName}}<span *ngIf="!last">,</span>
           </span>
         </mat-cell>
@@ -27,14 +27,27 @@
 
       <ng-container matColumnDef="description">
         <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell class="description" [matTooltip]="element.description" *matCellDef="let element">
-          {{ element.description }}
+        <mat-cell class="description" [matTooltip]="book.description" *matCellDef="let book">
+          {{ book.description }}
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let book">
+          <button mat-button class="edit-book" (click)="showEditBookDialog(book)">Edit</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let book">
+          <button mat-button class="delete-book" (click)="delete(book)">Delete</button>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;">
-        <span></span>
       </mat-row>
     </mat-table>
 

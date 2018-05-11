@@ -4,7 +4,7 @@ import {BookApiService} from "../../../core/services/api/book-api/book-api.servi
 import {Observable} from "rxjs/Observable";
 
 @Injectable()
-export class AddBookDialogService {
+export class EditBookDialogService {
 
   constructor(private bookApiService: BookApiService) { }
 

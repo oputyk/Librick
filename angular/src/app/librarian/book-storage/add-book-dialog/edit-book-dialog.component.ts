@@ -2,28 +2,29 @@ import {Component, Input, OnInit} from '@angular/core';
 import {DateAdapter, MatDialog, MatDialogRef} from "@angular/material";
 import {ChangePasswordDialogService} from "../../../user/change-password-dialog/change-password-dialog.service";
 import {ChangePasswordDialogComponent} from "../../../user/change-password-dialog/change-password-dialog.component";
-import {AddBookDialogService} from "./add-book-dialog.service";
+
 import {Book} from "../../../shared/models/book.model";
 import {isNullOrUndefined} from "util";
 import {MomentDateAdapter} from "@angular/material-moment-adapter";
 import {Author} from "../../../shared/models/author.model";
 import {AuthorSelectorDialogComponent} from "./author-selector-dialog/author-selector-dialog.component";
+import {EditBookDialogService} from "./edit-book-dialog.service";
 
 @Component({
   selector: 'app-add-book-dialog',
-  templateUrl: './add-book-dialog.component.html',
-  styleUrls: ['./add-book-dialog.component.scss'],
-  providers: [AddBookDialogService, {provide: DateAdapter, useClass: MomentDateAdapter}]
+  templateUrl: './edit-book-dialog.component.html',
+  styleUrls: ['./edit-book-dialog.component.scss'],
+  providers: [EditBookDialogService, {provide: DateAdapter, useClass: MomentDateAdapter}]
 })
-export class AddBookDialogComponent implements OnInit {
+export class EditBookDialogComponent implements OnInit {
 
   @Input() public book: Book;
   public title: string;
   public error: boolean = false;
 
-  constructor(public addBookDialogRef: MatDialogRef<AddBookDialogComponent>,
+  constructor(public editBookDialogRef: MatDialogRef<EditBookDialogComponent>,
               public selectAuthorsDialog: MatDialog,
-              private service: AddBookDialogService) { }
+              private service: EditBookDialogService) { }
 
   ngOnInit() {
     if(isNullOrUndefined(this.book)) {
@@ -40,7 +41,7 @@ export class AddBookDialogComponent implements OnInit {
         if(book == null) {
           this.error = true;
         } else {
-          this.addBookDialogRef.close(book);
+          this.editBookDialogRef.close(book);
         }
     },error => {
         this.error = true;

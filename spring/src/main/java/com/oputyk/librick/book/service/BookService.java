@@ -15,4 +15,6 @@ public interface BookService {
     List<FullBookDto> findAllFullBookDtos();
 
     FullBookDto updateOrSaveBook(FullBookDto fullBookDto);
+
+    boolean deleteBook(Long id);
 }

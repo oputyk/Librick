@@ -8,7 +8,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
 import { BookStorageComponent } from './book-storage/book-storage.component';
 import {ApiModule} from "../core/services/api/api.module";
 import {BookDataSource} from "./book-storage/book-data-source.service";
-import { AddBookDialogComponent } from './book-storage/add-book-dialog/add-book-dialog.component';
+import { EditBookDialogComponent } from './book-storage/add-book-dialog/edit-book-dialog.component';
 import {FormsModule} from "@angular/forms";
 import {ChangePasswordDialogComponent} from "../user/change-password-dialog/change-password-dialog.component";
 import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/author-selector-dialog/author-selector-dialog.component';
@@ -25,11 +25,11 @@ import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/au
   declarations: [
     DashboardComponent,
     BookStorageComponent,
-    AddBookDialogComponent,
+    EditBookDialogComponent,
     AuthorSelectorDialogComponent
   ],
   entryComponents: [
-    AddBookDialogComponent,
+    EditBookDialogComponent,
     AuthorSelectorDialogComponent
   ],
   providers: [

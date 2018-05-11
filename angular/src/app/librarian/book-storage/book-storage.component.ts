@@ -5,7 +5,7 @@ import {Book} from "../../shared/models/book.model";
 import {BookStorageService} from "./book-storage.service";
 import {BookDataSource} from "./book-data-source.service";
 import {ChangePasswordDialogComponent} from "../../user/change-password-dialog/change-password-dialog.component";
-import {AddBookDialogComponent} from "./add-book-dialog/add-book-dialog.component";
+import {EditBookDialogComponent} from "./add-book-dialog/edit-book-dialog.component";
 import {isNullOrUndefined} from "util";
 
 @Component({
@@ -17,7 +17,8 @@ import {isNullOrUndefined} from "util";
 export class BookStorageComponent implements OnInit {
 
   bookDataSource: BookDataSource;
-  displayedColumns = ['id', 'name', 'releaseDate', 'authors', 'description'];
+  displayedColumns =
+    ['id', 'name', 'releaseDate', 'authors', 'description', 'edit', 'delete'];
 
   constructor(private service: BookStorageService,
               public addBookDialog: MatDialog) { }
@@ -27,13 +28,32 @@ export class BookStorageComponent implements OnInit {
   }
 
   showAddBookDialog() {
-    const dialogRef = this.addBookDialog.open(AddBookDialogComponent);
+    const dialogRef = this.addBookDialog.open(EditBookDialogComponent);
 
     dialogRef.afterClosed().subscribe((book: Book) => {
       if(!isNullOrUndefined(book)) {
         this.reloadBookData();
       }
     })
+  }
+
+  showEditBookDialog(book: Book) {
+    const dialogRef = this.addBookDialog.open(EditBookDialogComponent);
+    dialogRef.componentInstance.book = book;
+
+    dialogRef.afterClosed().subscribe((book: Book) => {
+      if(!isNullOrUndefined(book)) {
+        this.reloadBookData();
+      }
+    })
+  }
+
+  delete(book: Book) {
+    this.service.deleteBook(book.id).subscribe((success: boolean) => {
+      if(success) {
+        this.reloadBookData();
+      }
+    });
   }
 
   private reloadBookData() {

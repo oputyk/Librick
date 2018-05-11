@@ -32,4 +32,8 @@ export class BookApiService {
   addOrUpdateBook(book: Book): Observable<Book> {
     return this.http.post<Book>(`/api/book/secure/book`, book);
   }
+
+  deleteBook(id: number) {
+    return this.http.delete<boolean>(`/api/book/secure/book/${id}`);
+  }
 }

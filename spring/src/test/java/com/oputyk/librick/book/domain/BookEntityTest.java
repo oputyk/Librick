@@ -26,28 +26,45 @@ public class BookEntityTest {
     private LocalDate now;
 
     @Before
-    public void setUp() throws Exception {
+    public void setUp() {
         initDate();
         initAuthorEntities();
         initOldAuthorEntities();
         initBookEntity();
+        initRelationShips();
     }
 
     @Test
-    public void testUpdateAuthorEntities() throws Exception {
+    public void testUpdateAuthorEntities() {
         bookEntity.updateAuthorEntities(authorEntities);
-
         assertThat(bookEntity.getAuthors()).isEqualTo(authorEntities);
+        assertThat(oldAuthorEntities.get(0).getBookEntities()).isEmpty();
     }
 
     @Test
     public void testAddAuthorEntity() {
-        bookEntity.setAuthors(new ArrayList<>());
-
         bookEntity.addAuthorEntity(authorEntities.get(0));
         bookEntity.addAuthorEntity(authorEntities.get(1));
 
-        assertThat(bookEntity.getAuthors()).isEqualTo(authorEntities);
+        assertThat(bookEntity.getAuthors().contains(authorEntities.get(0))).isTrue();
+    }
+
+    @Test
+    public void testDeleteAuthorEntitiesByAddAuthorEntityFunction() {
+        bookEntity.addAuthorEntity(authorEntities.get(0));
+        bookEntity.addAuthorEntity(authorEntities.get(1));
+
+        bookEntity.updateAuthorEntities(new ArrayList<>());
+
+        assertThat(bookEntity.getAuthors()).isEmpty();
+
+        assertThat(authorEntities.get(0).getBookEntities()).isEmpty();
+        assertThat(authorEntities.get(1).getBookEntities()).isEmpty();
+    }
+
+    private void initRelationShips() {
+        bookEntity.setAuthors(new ArrayList<>(Arrays.asList(oldAuthorEntities.get(0))));
+        oldAuthorEntities.get(0).setBookEntities(new ArrayList<>(Arrays.asList(bookEntity)));
     }
 
     private void initDate() {
@@ -56,19 +73,19 @@ public class BookEntityTest {
 
     private void initAuthorEntities() {
         authorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(1L, "firstName", "lastName", LocalDate.now().minusYears(40), new ArrayList<>(Arrays.asList(bookEntity))),
+                new AuthorEntity(1L, "firstName", "lastName", LocalDate.now().minusYears(40), new ArrayList<>()),
                 new AuthorEntity(2L, "firstName2", "lastName2", LocalDate.now().minusYears(30), new ArrayList<>())
         ));
     }
 
     private void initOldAuthorEntities() {
         oldAuthorEntities = new ArrayList<>(Arrays.asList(
-                new AuthorEntity(3L, "firstName3", "lastName3", LocalDate.now().minusYears(23), new ArrayList<>(Arrays.asList(bookEntity)))
+                new AuthorEntity(3L, "firstName3", "lastName3", LocalDate.now().minusYears(23), new ArrayList<>())
         ));
     }
 
     private void initBookEntity() {
-        bookEntity = new BookEntity(1L, "firstName", oldAuthorEntities, "description", now, new ArrayList<>());
+        bookEntity = new BookEntity(1L, "firstName", new ArrayList<>(), "description", now, new ArrayList<>());
     }
 
 }

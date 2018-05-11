@@ -31,15 +31,21 @@ public class AuthorEntity {
     @JsonFormat(pattern = "dd::MM::yyyy")
     private LocalDate birthday;
 
-    @ManyToMany(cascade = {
-                    CascadeType.PERSIST,
-                    CascadeType.DETACH,
-                    CascadeType.REFRESH,
-                    CascadeType.MERGE })
+    @ManyToMany
     @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
     private List<BookEntity> bookEntities = new ArrayList<>();
+
+    @Override
+    public boolean equals(Object authorEntity) {
+        if(authorEntity == this)
+            return true;
+        else if(authorEntity instanceof  AuthorEntity && id != null)
+            return id.equals(((AuthorEntity) authorEntity).getId());
+        else
+            return false;
+    }
 
     // AuthorEntity (many) - BookEntity (many) //
     public void updateBookEntities(List<BookEntity> newBookEntities) {

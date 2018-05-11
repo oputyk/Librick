@@ -38,6 +38,16 @@ public class BookEntity {
     @OneToMany(mappedBy = "bookEntity")
     private List<BookInstanceEntity> bookInstanceEntities = new ArrayList<>();
 
+    @Override
+    public boolean equals(Object bookEntity) {
+        if(bookEntity == this)
+            return true;
+        else if(bookEntity instanceof  BookEntity && id != null)
+            return id.equals(((BookEntity) bookEntity).getId());
+        else
+            return false;
+    }
+
     // BookEntity (many) - AuthorEntity (many) //
     public void updateAuthorEntities(List<AuthorEntity> newAuthorEntities) {
         if (newAuthorEntities != null) {
@@ -49,8 +59,8 @@ public class BookEntity {
                     .filter(authorEntity -> !authors.contains(authorEntity))
                     .collect(Collectors.toList());
 
-            toRemove.forEach(this::removeAuthorEntity);
             toAdd.forEach(this::addAuthorEntity);
+            toRemove.forEach(this::removeAuthorEntity);
         } else {
             authors.clear();
         }

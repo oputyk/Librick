@@ -26,4 +26,10 @@ public class BookSecureController {
     public FullBookDto updateOrSaveBook(@RequestBody FullBookDto fullBookDto) {
         return bookService.updateOrSaveBook(fullBookDto);
     }
+
+    @PreAuthorize("hasRole('ROLE_LIBRARIAN')")
+    @DeleteMapping("book/{id}")
+    public boolean delete(@PathVariable Long id) {
+        return bookService.deleteBook(id);
+    }
 }
