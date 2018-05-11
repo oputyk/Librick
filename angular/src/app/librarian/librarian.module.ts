@@ -12,6 +12,11 @@ import { EditBookDialogComponent } from './book-storage/add-book-dialog/edit-boo
 import {FormsModule} from "@angular/forms";
 import {ChangePasswordDialogComponent} from "../user/change-password-dialog/change-password-dialog.component";
 import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/author-selector-dialog/author-selector-dialog.component';
+import {BookSelectorDialogService} from "./authors/add-author-dialog/book-selector-dialog/book-selector-dialog.service";
+import {BookSelectorDialogComponent} from "./authors/add-author-dialog/book-selector-dialog/book-selector-dialog.component";
+import {EditAuthorDialogComponent} from "./authors/add-author-dialog/edit-author-dialog.component";
+import {AuthorStorageComponent} from "./authors/author-storage.component";
+import {AuthorDataSource} from "./authors/author-data-source.service";
 
 @NgModule({
   imports: [
@@ -26,14 +31,20 @@ import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/au
     DashboardComponent,
     BookStorageComponent,
     EditBookDialogComponent,
-    AuthorSelectorDialogComponent
+    EditAuthorDialogComponent,
+    AuthorSelectorDialogComponent,
+    BookSelectorDialogComponent,
+    AuthorStorageComponent
   ],
   entryComponents: [
     EditBookDialogComponent,
-    AuthorSelectorDialogComponent
+    EditAuthorDialogComponent,
+    AuthorSelectorDialogComponent,
+    BookSelectorDialogComponent
   ],
   providers: [
-    BookDataSource
+    BookDataSource,
+    AuthorDataSource
   ]
 })
 export class LibrarianModule { }

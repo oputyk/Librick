@@ -13,6 +13,10 @@ export class BookApiService {
     return this.http.get<Book[]>(`api/book/all`);
   }
 
+  getAllFullBooks(): Observable<Book[]> {
+    return this.http.get<Book[]>(`api/book/all-full`);
+  }
+
   addBook(book: Book): Observable<Book> {
     if(book.id == null) {
       return this.addOrUpdateBook(book);

@@ -28,8 +28,8 @@ public class BookEntity {
     private Long id;
     private String name;
 
-    @ManyToMany(mappedBy = "bookEntities")
-    private List<AuthorEntity> authorEntities = new ArrayList<>();
+    @ManyToMany(mappedBy = "books")
+    private List<AuthorEntity> authors = new ArrayList<>();
     private String description;
 
     @JsonFormat(pattern = "dd::MM::yyyy")
@@ -51,31 +51,31 @@ public class BookEntity {
     // BookEntity (many) - AuthorEntity (many) //
     public void updateAuthorEntities(List<AuthorEntity> newAuthorEntities) {
         if (newAuthorEntities != null) {
-            List<AuthorEntity> toRemove = authorEntities.stream()
+            List<AuthorEntity> toRemove = authors.stream()
                     .filter(authorEntity -> !newAuthorEntities.contains(authorEntity))
                     .collect(Collectors.toList());
 
             List<AuthorEntity> toAdd = newAuthorEntities.stream()
-                    .filter(authorEntity -> !authorEntities.contains(authorEntity))
+                    .filter(authorEntity -> !authors.contains(authorEntity))
                     .collect(Collectors.toList());
 
             toAdd.forEach(this::addAuthorEntity);
             toRemove.forEach(this::removeAuthorEntity);
         } else {
-            authorEntities.clear();
+            authors.clear();
         }
     }
 
     public void addAuthorEntity(AuthorEntity authorEntity) {
-        authorEntities.add(authorEntity);
-        if (!authorEntity.getBookEntities().contains(this)) {
+        authors.add(authorEntity);
+        if (!authorEntity.getBooks().contains(this)) {
             authorEntity.addBookEntity(this);
         }
     }
 
     public void removeAuthorEntity(AuthorEntity authorEntity) {
-        authorEntities.remove(authorEntity);
-        if (authorEntity.getBookEntities().contains(this)) {
+        authors.remove(authorEntity);
+        if (authorEntity.getBooks().contains(this)) {
             authorEntity.removeBookEntity(this);
         }
     }

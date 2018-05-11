@@ -1,0 +1,34 @@
+<div class="container" fxFlexAlign="center stretch" fxLayout="column">
+  <h3 mat-dialog-title class="title"> {{title}} </h3>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="author.firstName" type="text" placeholder="First name" required/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="author.lastName" type="text" placeholder="Last name" required/>
+  </mat-form-field>
+
+  <mat-form-field>
+    <input matInput [(ngModel)]="author.birthday" [matDatepicker]="picker" placeholder="Birthday">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <button mat-raised-button class="showBookSelectorDialog" (click)="showBookSelectorDialog()">
+    Books:
+    <span *ngFor="let book of author.books; let last = last">
+            {{book.name}}<span *ngIf="!last">,</span>
+    </span>
+  </button>
+
+  <div class="button-group" fxLayout="row" fxLayoutGap="1.5em" fxLayoutAlign="space-between center">
+    <button fxFlex mat-raised-button [mat-dialog-close]>
+      Cancel
+    </button>
+
+    <button fxFlex mat-raised-button (click)="addOrUpdateAuthor()">
+      Save
+    </button>
+  </div>
+</div>

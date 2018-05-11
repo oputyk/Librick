@@ -1,0 +1,55 @@
+<div fxFlex fxLayout="column" fxLayoutAlign="space-around center">
+  <div fxFlex class="mat-table-container">
+    <mat-table class="mat-table" [dataSource]="authorDataSource">
+      <ng-container matColumnDef="id">
+        <mat-header-cell *matHeaderCellDef> Id </mat-header-cell>
+        <mat-cell *matCellDef="let author"> {{author.id}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="firstName">
+        <mat-header-cell *matHeaderCellDef> First name </mat-header-cell>
+        <mat-cell *matCellDef="let author"> {{author.firstName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="lastName">
+        <mat-header-cell *matHeaderCellDef> Last name </mat-header-cell>
+        <mat-cell *matCellDef="let author"> {{author.lastName}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="birthday">
+        <mat-header-cell *matHeaderCellDef> Birthday </mat-header-cell>
+        <mat-cell *matCellDef="let author"> {{author.birthday | date: 'dd/MM/yyyy'}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="books">
+        <mat-header-cell *matHeaderCellDef> Books </mat-header-cell>
+        <mat-cell *matCellDef="let author">
+          <span *ngFor="let book of author.books; let last = last">
+            {{book.name}}<span *ngIf="!last">,</span>
+          </span>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="edit">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let author">
+          <button mat-button class="edit-author" (click)="showEditAuthorDialog(author)">Edit</button>
+        </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="delete">
+        <mat-header-cell *matHeaderCellDef>  </mat-header-cell>
+        <mat-cell *matCellDef="let book">
+          <button mat-button class="delete-author" (click)="delete(book)">Delete</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;">
+      </mat-row>
+    </mat-table>
+
+    <button mat-raised-button class="add-author" (click)="showAddAuthorDialog()">Add author</button>
+  </div>
+
+</div>

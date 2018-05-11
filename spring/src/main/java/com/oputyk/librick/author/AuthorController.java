@@ -1,6 +1,7 @@
 package com.oputyk.librick.author;
 
 import com.oputyk.librick.author.dto.AuthorDto;
+import com.oputyk.librick.author.dto.FullAuthorDto;
 import com.oputyk.librick.author.service.AuthorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,5 +27,10 @@ public class AuthorController {
     @GetMapping("all")
     public List<AuthorDto> all() {
         return authorService.findAllAuthorDtos();
+    }
+
+    @GetMapping("all-full")
+    public List<FullAuthorDto> allFull() {
+        return authorService.findAllFullAuthorsDto();
     }
 }

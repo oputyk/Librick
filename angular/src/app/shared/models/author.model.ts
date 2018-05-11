@@ -1,7 +1,7 @@
 import {Book} from "./book.model";
 
 export class Author {
-  id: Number;
+  id: number;
   firstName: string;
   lastName: string;
   birthday: Date;

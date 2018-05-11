@@ -55,15 +55,17 @@ public class BookConverterImpl implements BookConverter {
 
     @Override
     public BookEntity toBookEntity(FullBookDto fullBookDto) {
-        BookEntity oldBookEntity = findEntityAndCreateIfDoesntExist(fullBookDto.getId());
+        BookEntity oldBookEntity;
+        oldBookEntity = findEntityAndCreateIfDoesntExist(fullBookDto.getId());
         fullBookDto.setId(oldBookEntity.getId());
 
-        BookEntity newBookEntity = (BookEntity) converter.toEntity(oldBookEntity, fullBookDto);
+        BookEntity newBookEntity;
+        newBookEntity = (BookEntity) converter.toEntity(oldBookEntity, fullBookDto);
 
         if(fullBookDto.getAuthors() != null) {
             List<AuthorEntity> newAuthorEntities;
             newAuthorEntities = fullBookDto.getAuthors().stream()
-                    .map(authorDto -> authorConverter.toAuthorEntity(authorDto))
+                    .map(authorConverter::toAuthorEntity)
                     .collect(Collectors.toList());
 
             newBookEntity.updateAuthorEntities(newAuthorEntities);
@@ -73,7 +75,7 @@ public class BookConverterImpl implements BookConverter {
         if(fullBookDto.getBookInstances() != null) {
             List<BookInstanceEntity> newBookInstanceEntities;
             newBookInstanceEntities = fullBookDto.getBookInstances().stream()
-                    .map(bookInstanceDto -> bookInstanceConverter.toBookInstanceEntity(bookInstanceDto))
+                    .map(bookInstanceConverter::toBookInstanceEntity)
                     .collect(Collectors.toList());
             newBookEntity.updateBookInstanceEntities(newBookInstanceEntities);
         }

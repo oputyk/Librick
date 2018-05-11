@@ -8,7 +8,7 @@ import {Subject} from "rxjs/Subject";
 
 @Injectable()
 export class BookDataSource extends DataSource<Book> {
-  private allBookSubject: Subject<Book[]> = new Subject<Book[]>();
+  private allBooksSubject: Subject<Book[]> = new Subject<Book[]>();
 
   constructor(private bookApiService: BookApiService) {
     super();
@@ -16,7 +16,7 @@ export class BookDataSource extends DataSource<Book> {
   connect(): Observable<Book[]> {
     this.loadBooks();
 
-    return this.allBookSubject.asObservable();
+    return this.allBooksSubject.asObservable();
   }
 
   disconnect() {}
@@ -26,8 +26,8 @@ export class BookDataSource extends DataSource<Book> {
   }
 
   private loadBooks() {
-    this.bookApiService.getAllBooks().subscribe((books: Book[]) => {
-      this.allBookSubject.next(books);
+    this.bookApiService.getAllFullBooks().subscribe((books: Book[]) => {
+      this.allBooksSubject.next(books);
     });
   }
 }

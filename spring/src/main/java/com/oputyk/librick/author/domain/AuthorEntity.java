@@ -35,7 +35,7 @@ public class AuthorEntity {
     @JoinTable(name = "author_book",
             joinColumns = @JoinColumn(name = "author_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "book_id", referencedColumnName = "id"))
-    private List<BookEntity> bookEntities = new ArrayList<>();
+    private List<BookEntity> books = new ArrayList<>();
 
     @Override
     public boolean equals(Object authorEntity) {
@@ -50,31 +50,31 @@ public class AuthorEntity {
     // AuthorEntity (many) - BookEntity (many) //
     public void updateBookEntities(List<BookEntity> newBookEntities) {
         if (newBookEntities != null) {
-            List<BookEntity> toRemove = bookEntities.stream()
+            List<BookEntity> toRemove = books.stream()
                     .filter(bookEntity -> !newBookEntities.contains(bookEntity))
                     .collect(Collectors.toList());
 
             List<BookEntity> toAdd = newBookEntities.stream()
-                    .filter(bookEntity -> !bookEntities.contains(bookEntity))
+                    .filter(bookEntity -> !books.contains(bookEntity))
                     .collect(Collectors.toList());
 
             toRemove.forEach(this::removeBookEntity);
             toAdd.forEach(this::addBookEntity);
         } else {
-            bookEntities.clear();
+            books.clear();
         }
     }
 
     public void addBookEntity(BookEntity bookEntity) {
-        bookEntities.add(bookEntity);
-        if (!bookEntity.getAuthorEntities().contains(this)) {
+        books.add(bookEntity);
+        if (!bookEntity.getAuthors().contains(this)) {
             bookEntity.addAuthorEntity(this);
         }
     }
 
     public void removeBookEntity(BookEntity bookEntity) {
-        bookEntities.remove(bookEntity);
-        if (bookEntity.getAuthorEntities().contains(this)) {
+        books.remove(bookEntity);
+        if (bookEntity.getAuthors().contains(this)) {
             bookEntity.removeAuthorEntity(this);
         }
     }

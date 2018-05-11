@@ -37,8 +37,8 @@ public class BookEntityTest {
     @Test
     public void testUpdateAuthorEntities() {
         bookEntity.updateAuthorEntities(authorEntities);
-        assertThat(bookEntity.getAuthorEntities()).isEqualTo(authorEntities);
-        assertThat(oldAuthorEntities.get(0).getBookEntities()).isEmpty();
+        assertThat(bookEntity.getAuthors()).isEqualTo(authorEntities);
+        assertThat(oldAuthorEntities.get(0).getBooks()).isEmpty();
     }
 
     @Test
@@ -46,7 +46,7 @@ public class BookEntityTest {
         bookEntity.addAuthorEntity(authorEntities.get(0));
         bookEntity.addAuthorEntity(authorEntities.get(1));
 
-        assertThat(bookEntity.getAuthorEntities().contains(authorEntities.get(0))).isTrue();
+        assertThat(bookEntity.getAuthors().contains(authorEntities.get(0))).isTrue();
     }
 
     @Test
@@ -56,15 +56,15 @@ public class BookEntityTest {
 
         bookEntity.updateAuthorEntities(new ArrayList<>());
 
-        assertThat(bookEntity.getAuthorEntities()).isEmpty();
+        assertThat(bookEntity.getAuthors()).isEmpty();
 
-        assertThat(authorEntities.get(0).getBookEntities()).isEmpty();
-        assertThat(authorEntities.get(1).getBookEntities()).isEmpty();
+        assertThat(authorEntities.get(0).getBooks()).isEmpty();
+        assertThat(authorEntities.get(1).getBooks()).isEmpty();
     }
 
     private void initRelationShips() {
-        bookEntity.setAuthorEntities(new ArrayList<>(Arrays.asList(oldAuthorEntities.get(0))));
-        oldAuthorEntities.get(0).setBookEntities(new ArrayList<>(Arrays.asList(bookEntity)));
+        bookEntity.setAuthors(new ArrayList<>(Arrays.asList(oldAuthorEntities.get(0))));
+        oldAuthorEntities.get(0).setBooks(new ArrayList<>(Arrays.asList(bookEntity)));
     }
 
     private void initDate() {

@@ -12,6 +12,10 @@ export class AuthorApiService {
     return this.http.get<Author[]>(`api/author/all`);
   }
 
+  getAllFullAuthors(): Observable<Author[]> {
+    return this.http.get<Author[]>(`api/author/all-full`);
+  }
+
   addAuthor(author: Author): Observable<Author> {
     if(author.id == null) {
       return this.addOrUpdateAuthor(author);
@@ -29,7 +33,11 @@ export class AuthorApiService {
   }
 
   addOrUpdateAuthor(author: Author): Observable<Author> {
-    return this.http.post<Author>(`api/author/author`, author);
+    return this.http.post<Author>(`api/author/secure/author`, author);
 
+  }
+
+  deleteAuthor(id: number) {
+    return this.http.delete<boolean>(`/api/author/secure/author/${id}`);
   }
 }

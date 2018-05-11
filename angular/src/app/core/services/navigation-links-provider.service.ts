@@ -15,7 +15,8 @@ export class NavigationLinksProviderService {
 
   private librarianLinks: Link[] = [
     new Link(Observable.of("Dashboard"), "/librarian/dashboard"),
-    new Link(Observable.of("Book storage"), "/librarian/book-storage")];
+    new Link(Observable.of("Book storage"), "/librarian/book-storage"),
+    new Link(Observable.of("Authors"), "/librarian/authors")];
 
   constructor(private router: Router) {
     this.router.events
