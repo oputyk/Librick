@@ -9,7 +9,7 @@ import { BookStorageComponent } from './book-storage/book-storage.component';
 import {ApiModule} from "../core/services/api/api.module";
 import {BookDataSource} from "./book-storage/book-data-source.service";
 import { EditBookDialogComponent } from './book-storage/add-book-dialog/edit-book-dialog.component';
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {ChangePasswordDialogComponent} from "../user/change-password-dialog/change-password-dialog.component";
 import { AuthorSelectorDialogComponent } from './book-storage/add-book-dialog/author-selector-dialog/author-selector-dialog.component';
 import {BookSelectorDialogService} from "./authors/add-author-dialog/book-selector-dialog/book-selector-dialog.service";
@@ -25,7 +25,8 @@ import {AuthorDataSource} from "./authors/author-data-source.service";
     SharedModule,
     MaterialModule,
     FlexLayoutModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     DashboardComponent,

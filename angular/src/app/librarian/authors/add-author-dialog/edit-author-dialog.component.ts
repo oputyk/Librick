@@ -11,6 +11,9 @@ import {
   BookSelectorDialogComponent
 } from "./book-selector-dialog/book-selector-dialog.component";
 import {EditAuthorDialogService} from "./edit-author-dialog.service";
+import moment = require("moment");
+import {FormControl} from "@angular/forms";
+import {Moment} from "moment";
 
 @Component({
   selector: 'app-add-author-dialog',
@@ -21,6 +24,7 @@ import {EditAuthorDialogService} from "./edit-author-dialog.service";
 export class EditAuthorDialogComponent implements OnInit {
 
   @Input() public author: Author;
+  public date: FormControl;
   public title: string;
   public error: boolean = false;
 
@@ -34,10 +38,12 @@ export class EditAuthorDialogComponent implements OnInit {
       this.title = 'Add author';
     } else {
       this.title = 'Update author';
+      this.date = new FormControl(moment(this.author.birthday));
     }
   }
 
   addOrUpdateAuthor() {
+    this.author.birthday = this.date.value();
     this.service.addOrUpdateAuthor(this.author).subscribe(
       (author: Author) => {
         if(author == null) {

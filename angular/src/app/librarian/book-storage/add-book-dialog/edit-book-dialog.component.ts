@@ -9,6 +9,8 @@ import {MomentDateAdapter} from "@angular/material-moment-adapter";
 import {Author} from "../../../shared/models/author.model";
 import {AuthorSelectorDialogComponent} from "./author-selector-dialog/author-selector-dialog.component";
 import {EditBookDialogService} from "./edit-book-dialog.service";
+import {FormControl} from "@angular/forms";
+import moment = require("moment");
 
 @Component({
   selector: 'app-add-book-dialog',
@@ -19,6 +21,7 @@ import {EditBookDialogService} from "./edit-book-dialog.service";
 export class EditBookDialogComponent implements OnInit {
 
   @Input() public book: Book;
+  public date: FormControl;
   public title: string;
   public error: boolean = false;
 
@@ -32,10 +35,12 @@ export class EditBookDialogComponent implements OnInit {
       this.title = 'Add book';
     } else {
       this.title = 'Update book';
+      this.date = new FormControl(moment(this.book.releaseDate));
     }
   }
 
   addOrUpdateBook() {
+    this.book.releaseDate = this.date.value;
     this.service.addOrUpdateBook(this.book).subscribe(
       (book: Book) => {
         if(book == null) {
